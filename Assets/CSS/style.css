@@ -1,0 +1,157 @@
+body{
+    background: linear-gradient(45deg, #b7deffb0, #c4e3ffd1, #e5e5e5c9); 
+    font-family: 'Arial', sans-serif;
+}
+header .navbar .container-fluid{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    background-color: #b7deff;
+    padding: 4px;
+    color: black;
+}
+footer{
+    background-color: #2C2C2C;
+    color: #ffffff;
+    margin-top: 90px;
+    padding: 15px;
+}
+#FAQS{
+    background-color: rgb(229 229 229);
+    border-radius: 15px;
+}
+.navbar{
+    padding-top: 0%;
+    padding-bottom: 0%;
+}
+.carousel-caption h3, .carousel-caption p{
+    color: white;
+    text-shadow: 2px 2px 5px black;
+}
+.navbar .container-fluid .collapse .navbar-nav .nav-item a {
+    color: rgb(7, 7, 7);
+    background-color: none;
+    border-radius: 9px;
+    position: relative;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.5s ease-in-out;
+    transition: background-color 0.5s ease-in-out;
+}
+.navbar .container-fluid .collapse .navbar-nav .nav-item a::after {
+    content: "";
+    position: absolute;
+    /* border:2px solid red ; */
+    left: 50%;
+    bottom: -12px;
+    width: 0%;
+    height: 3px;
+    background-color: rgb(18, 18, 18);
+    transition: all 0.5s ease-in-out;
+    transform: translateX(-50%);
+}
+
+.navbar .container-fluid .collapse .navbar-nav .nav-item a:hover {
+    color:#fff2af87;
+    background-color: #2C2C2C;
+}
+
+.navbar .container-fluid .collapse .navbar-nav .nav-item a:hover::after {
+    width: 100%;
+    background-color: rgb(255, 0, 0);
+}
+
+.navbar input{
+    background-color: #2C2C2C;
+    border:1.9px solid #663333;
+    color: rgb(249, 252, 255);
+}
+.filterAll{
+    background-color: #e5e5e5;
+    color: white;
+    border-radius: 12px;
+    /* padding-bottom: 5px; */
+}
+.filter-option:hover{
+    background-color:#b7deff;
+    color: #020202;
+    text-shadow:0 0 1px #000000;
+}
+
+.carousels{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.carousels .carousel .carousel-inner .carousel-item img{
+    border-radius: 15px;
+}
+.btn{
+    border-radius: 12px !important;
+}
+.btn:hover{
+    color: #ffffff;
+    background-color:#2C2C2C;
+}
+.LoginCard{
+    border-radius: 15px; 
+}
+.LoginCard input{
+    background-color: #2C2C2C;
+    border-radius: 7px;
+    color: wheat;
+}
+.options a{
+    background-color:#e5e5e5;    ;
+    margin-right: 10px;
+    border-radius: 15px;
+}
+.card{
+    border-radius: 15px;
+}
+.card-body{
+    background-color: #b7deff;
+    border-radius: 15px;
+    box-shadow: 0 0 10px black;
+}
+.Link{
+    color: #2C2C2C;
+    text-align: center;
+}
+.accordion .accordion-item .accordion-button, .accordion .accordion-item .accordion-header .accordion-button{
+    background-color: #20202000;
+    color: #000000;
+    border-radius: 10px;
+    margin: 2px;
+    border-style: solid;
+    border-width: 2px;
+}
+.accordion .accordion-item .accordion-collapse{
+    background-color: #ffffff00;
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    margin: 2px;
+}
+.accordion .accordion-item{
+    background-color: #ffebeb00;
+    margin: 2px;
+    
+    border-radius: 10px;
+}
+.upi-items p{
+    color: #000000;
+    text-decoration:none;
+}
+ img{
+    height: 50px;
+    width: 50px;
+}
+.list-group-item{
+    display: flex;
+    justify-content: space-evenly;
+}
+.plan{
+    background-color: #2C2C2C;
+    padding-bottom: 40px;
+}
+.plan h3{
+    color: white;
+}

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="Assets/Images/logo.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="Assets/Images/logo.png" sizes="180x180"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="/css/main.main.css"> -->
+    <link rel="stylesheet" href="Assets/CSS/style.css">
+    <title>Prepaid</title>
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand m-0.1" href="#"><img src="Assets/Images/logo.png" alt="" style="height: 75%"></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="plan_page.html">View Plans</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#About-us" tabindex="1" aria-disabled="true">About Us</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#FAQS" tabindex="-1" aria-disabled="true">Help</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="History.html" tabindex="0" aria-disabled="true">History</a>
+                  </li>
+                </ul>
+                <form class="d-flex">
+                  <input class="form-control me-2 shadow-lg" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-dark" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+    </header>
+
+    
+          <!-- Carousel -->
+          <div class="container carousels w-100 d-flex justify-content-center">
+            <div id="carouselExampleIndicators" class="carousel slide w-100" data-bs-ride="carousel" style="max-height: 400px; min-height: 300px; border-radius: 15px;">
+                <div class="carousel-inner h-100">
+                    <div class="carousel-item active h-100">
+                        <img src="Assets/Images/Carousel-1.jpg" class="d-block w-100 h-100" alt="Unlimited Offer" style="object-fit: cover;">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h3>Unlimited</h3>
+                            <p>Recharge with ₹3,599 annual pack to get unlimited services.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item h-100">
+                        <img src="Assets/Images/Carousel-2.jpg" class="d-block w-100 h-100" alt="5G Network">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h3>5G</h3>
+                            <p>Experience ultra-fast 5G connectivity and break free from slow networks.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item h-100">
+                        <img src="Assets/Images/Carousel-3.jpg" class="d-block w-100 h-100" alt="Prepaid Plans">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h3>Prepaid</h3>
+                            <p>Explore our affordable prepaid recharge plans.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev h-100" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next h-100" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        
+<div class=" container-fluid">
+    <div class="container">
+      <!-- Login Card -->
+      <div class="container my-5">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="card w-100 LoginCard rounded-5 shadow">
+              <div class="card-body d-flex flex-column align-items-center">
+                <label class="h3 m-3">Recharge Now..!</label>
+                <input type="tel" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="10" placeholder="  Mobile Number" required>
+                <a href="plan_page.html" class="btn btn-danger m-3">Recharge</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!-- Options -->
+       <div class="container">
+       <h3 class="h3 text-center">Plans</h3>
+       <div class="container options d-flex flex-wrap justify-content-center mb-5">
+        <a href="plan_page.html" class="btn shadow mt-2"><img src="Assets/Images/Popular-img.png" alt="" style="height: 50px;"> <p class="">popular plans</p></a>
+        <a href="plan_page.html" class="btn shadow mt-2"><img src="Assets/Images/Recommendation-img.png" alt="" style="height: 50px;"> <p>Recommended</p></a>
+        <a href="plan_page.html" class="btn shadow mt-2"><img src="Assets/Images/Valid.png" alt="" style="height: 50px;"> <p>Vaild Plans</p></a>
+        <a href="plan_page.html" class="btn shadow mt-2"><img src="Assets/Images/Data-img.png" alt="" style="height: 50px;"> <p>Data Plans</p></a>
+        <a href="plan_page.html" class="btn shadow mt-2"><img src="Assets/Images/Unlimite-png.webp" alt="" style="height: 50px;"> <p>Unlimited Data Plans</p></a>
+       </div></div>
+       
+  </div>
+</div>
+        <!-- Plans -->
+         <div class="container-fluid plan">
+          <div class="container">
+            <h3 class="h3 text-center  p-5">Recommended</h3>
+            <div class="row g-4 ">
+
+                <div class="col-lg-3 col-sm-6 ">
+                  <div class="card h-100" style="border-radius: 15px;">
+                    <div class="card-body d-flex flex-column">
+                      <h5 class="card-title" id="planPrice">₹299</h5>
+                      <hr>
+                      <p class="card-text">Truly Unlimited Calls</p>
+                      <p class="card-text" id="planData">1GB/Days</p>
+                      <p class="card-text">100 SMS/Day</p>
+                      <p class="card-text" id="validDays">28 Days</p>
+                      <a href="Payment Page.html" class="btn btn-danger mt-auto align-self-center" onclick="savePlanDetails(this)">Purchase</a>
+                      <a class="Link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">more</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card h-100">
+                      <div class="card-body d-flex flex-column">
+                        <h5 class="card-title" id="planPrice">₹579</h5> <hr>
+                        <p class="card-text">Truly Unlimited Calls</p>
+                        <p class="card-text" id="planData">1.5GB/Day</p>
+                        <p class="card-text">100 SMS/Day</p>
+                        <p class="card-text" id="validDays">56 Days</p>
+                        <a href="Payment Page.html" class="btn btn-danger mt-auto align-self-center" onclick="savePlanDetails(this)">Purchase</a>
+                        <a class="Link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom2" aria-controls="offcanvasBottom">more</a>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card h-100">
+                      <div class="card-body d-flex flex-column">
+                        <h5 class="card-title" id="planPrice">₹859</h5><hr>
+                        <p class="card-text">Truly Unlimited Calls</p>
+                        <p class="card-text" id="planData">1.5GB/Day</p>
+                        <p class="card-text">100 SMS/Day</p>
+                        <p class="card-text" id="validDays">84 Days</p>
+                        <a href="Payment Page.html" class="btn btn-danger mt-auto align-self-center" onclick="savePlanDetails(this)">Purchase</a>
+                        <a class="Link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom3" aria-controls="offcanvasBottom">more</a>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card h-100">
+                      <div class="card-body d-flex flex-column">
+                        <h5 class="card-title" id="planPrice">₹3599</h5><hr>
+                        <p class="card-text">Truly Unlimited Calls</p>
+                        <p class="card-text" id="planData">2GB/Day</p>
+                        <p class="card-text">100 SMS/Day</p>
+                        <p class="card-text" id="validDays">365 Days</p>
+                        <a href="Payment Page.html" class="btn btn-danger mt-auto align-self-center" onclick="savePlanDetails(this)">Purchase</a>
+                        <a class="Link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom4" aria-controls="offcanvasBottom">more</a>
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+         </div>
+
+          <!-- Plans Details OffCanvas -->
+          <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+            <div class="offcanvas-header">
+                <h3 class="offcanvas-title" id="offcanvasBottomLabel">₹299</h3>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body small">
+                  <hr>
+                  <p class="card-text">Calls: Truly Unlimited Calls</p>
+                  <p class="card-text">Data: 1GB/Days</p>
+                  <p class="card-text">SMS: 100 SMS/Day</p>
+                  <p class="card-text">Valid: 28 Days</p>
+                  <a href="Payment Page.html" class="btn btn-danger">Purchase</a>
+            </div>
+            </div>
+            <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom2" aria-labelledby="offcanvasBottomLabel">
+                <div class="offcanvas-header">
+                    <h3 class="offcanvas-title" id="offcanvasBottomLabel2">₹579</h3>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body small">
+                    <hr>
+                    <p class="card-text">Calls: Truly Unlimited Calls</p>
+                    <p class="card-text">Data: 1.5GB/Day</p>
+                    <p class="card-text">SMS: 100 SMS/Day</p>
+                    <p class="card-text">Valid: 56 Days</p>
+                    <a href="Payment Page.html" class="btn btn-danger mt-auto align-self-center">Purchase</a>
+                </div>
+            </div>
+            <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom3" aria-labelledby="offcanvasBottomLabel">
+                    <div class="offcanvas-header">
+                        <h3 class="offcanvas-title" id="offcanvasBottomLabel3">₹859</h3>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body small">
+                    <hr>
+                    <p class="card-text">Calls: Truly Unlimited Calls</p>
+                    <p class="card-text">Data: 1.5GB/Day</p>
+                    <p class="card-text">SMS: 100 SMS/Day</p>
+                    <p class="card-text">Valid: 84 Days</p>
+                    <a href="Payment Page.html" class="btn btn-danger mt-auto align-self-center">Purchase</a>
+                    </div>
+            </div>
+            <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom4" aria-labelledby="offcanvasBottomLabel">
+                <div class="offcanvas-header">
+                    <h3 class="offcanvas-title" id="offcanvasBottomLabel4">₹3599</h3>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body small">
+                    <p class="card-text">Calls: Truly Unlimited Calls</p>
+                    <p class="card-text">Data: 2GB/Day</p>
+                    <p class="card-text">SMS: 100 SMS/Day</p>
+                    <p class="card-text">Valid: 365 Days</p>
+                    <a href="Payment Page.html" class="btn btn-danger mt-auto align-self-center">Purchase</a>
+                </div>
+            </div>
+            <!-- FAQS -->
+          <section class="container" id="FAQS">
+            <div class="container mt-5">
+                <h1 class="display-5 text-center m-2">FAQS</h1>
+                <div class="accordion accordion-flush mb-2 " id="accordionFlushExample">
+                    <div class="accordion-item shadow m-1">
+                      <h2 class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            Q1: What is a prepaid mobile plan?
+                        </button>
+                      </h2>
+                      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">A prepaid mobile plan allows you to pay in advance for mobile services such as calls, SMS, and data without the need for a long-term contract.</div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item shadow m-1">
+                      <h2 class="accordion-header" id="flush-headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                            Q2: How do I recharge my prepaid number?
+                        </button>
+                      </h2>
+                      <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">You can recharge your number through our website by selecting your mobile operator, choosing a plan, and making a payment using a debit/credit card, UPI, or net banking.</div>
+                      </div>
+                    </div>
+                    <div class="accordion-item shadow m-1">
+                      <h2 class="accordion-header" id="flush-headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                            Q3: How can I check my balance and validity?
+                        </button>
+                      </h2>
+                      <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">You can check your balance and validity by dialing your mobile operator's USSD code or logging into your account on our website.</div>
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-success ms-2 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">view all</button>
+
+                    </div>
+                </div>
+          </section>
+
+<!-- Scrollable modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">FAQS</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="accordion accordion-flush mb-2" id="accordionFlushExample2">
+                    <div class="accordion-item shadow m-1">
+                      <h2 class="accordion-header" id="flush-headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                            Q4: What types of prepaid plans are available?
+                        </button>
+                      </h2>
+                      <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample2">
+                        <div class="accordion-body">We offer different types of plans, including unlimited calling, data packs, international roaming, and special recharge plans.</div>
+                      </div>
+                    </div>
+                    <div class="accordion-item shadow m-1">
+                      <h2 class="accordion-header" id="flush-headingFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                            Q5: Can I recharge for someone else?
+                        </button>
+                      </h2>
+                      <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample2">
+                        <div class="accordion-body"> Yes, you can recharge for any prepaid number by entering the mobile number and selecting the preferred plan.</div>
+                      </div>
+                    </div>
+                    <div class="accordion-item shadow m-1">
+                      <h2 class="accordion-header" id="flush-headingSix">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
+                            Q6: What happens if I recharge with two different plans?
+                        </button>
+                      </h2>
+                      <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample2">
+                        <div class="accordion-body">If you recharge with multiple plans, they will be queued, and the benefits will be activated based on their validity and priority.</div>
+                      </div>
+                    </div>
+                    <h5>Payments & Refunds</h5>
+                    <div class="accordion-item shadow m-1">
+                        <h2 class="accordion-header" id="flush-headingSeven">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSeven" aria-expanded="false" aria-controls="flush-collapseSeven">
+                            Q7: What payment methods are accepted?                          </button>
+                        </h2>
+                        <div id="flush-collapseSeven" class="accordion-collapse collapse" aria-labelledby="flush-headingSeven" data-bs-parent="#accordionFlushExample2">
+                          <div class="accordion-body">We accept payments via debit/credit cards, UPI, net banking.</div>
+                        </div>
+                      </div>
+                      <div class="accordion-item shadow m-1">
+                        <h2 class="accordion-header" id="flush-headingEight">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseEight" aria-expanded="false" aria-controls="flush-collapseEight">
+                            Q8: My recharge failed, but the amount was deducted. What should I do?                          </button>
+                        </h2>
+                        <div id="flush-collapseEight" class="accordion-collapse collapse" aria-labelledby="flush-headingEight" data-bs-parent="#accordionFlushExample2">
+                          <div class="accordion-body">If your recharge fails but the amount is deducted, it will be automatically refunded within 2-5 working days. If not, please contact our support team.</div>
+                        </div>
+                      </div>
+                      <div class="accordion-item shadow m-1">
+                        <h2 class="accordion-header" id="flush-headingNine">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseNine" aria-expanded="false" aria-controls="flush-collapseNine">
+                            Q9: Can I cancel a recharge after payment?                          </button>
+                        </h2>
+                        <div id="flush-collapseNine" class="accordion-collapse collapse" aria-labelledby="flush-headingNine" data-bs-parent="#accordionFlushExample2">
+                          <div class="accordion-body">No, once a recharge is processed, it cannot be canceled or refunded.</div>
+                        </div>
+                      </div>
+                  </div>
+            </div>
+        </div>
+  </div>
+</div>
+
+
+    </div>
+       <!-- footer -->
+       <footer class="bg-dark text-white py-4" id="About-us">
+        <div class="container">
+          <div class="row text-center text-md-start">
+            <!-- Quick Links -->
+            <div class="col-md-4 mb-3">
+              <h5>Quick Links</h5>
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-white text-decoration-none">View Plan</a></li>
+                <li><a href="#" class="text-white text-decoration-none">History</a></li>
+              </ul>
+            </div>
+            
+            <!-- Contact Us -->
+            <div class="col-md-4 mb-3">
+              <h5>Contact Us</h5>
+              <p>Email: support@mobicomm.com</p>
+              <p>Phone: +123 456 7890</p>
+            </div>
+            
+            <!-- Follow Us -->
+            <div class="col-md-4 mb-3">
+              <h5>Follow Us</h5>
+              <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          
+          <!-- Copyright Row -->
+          <div class="row mt-3">
+            <div class="col text-center">
+              <p class="mb-0">&copy; 2025 MobiComm Industry Limited. All rights reserved.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+    </html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Add Plans</title>
+    <link rel="shortcut icon" href="images/logo.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="images/logo.png" sizes="180x180"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="Assets/CSS/Style.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <!-- Close Button for Small Screens -->
+                    <div class="d-flex justify-content-end d-md-none">
+                        <button type="button" class="btn-close btn-light" aria-label="Close" data-bs-toggle="collapse" data-bs-target="#sidebar"></button>
+                    </div>
+                    <h4>Admin Dashboard</h4>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="Home.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="planEnd.html"><i class="fas fa-users"></i> User Management</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Addplans.html"><i class="fas fa-money-bill-wave"></i> Plan Management</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="userHistory.html"><i class="fas fa-history"></i> User History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-cog"></i> Settings</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <button class="btn btn-outline-dark d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-expanded="false" aria-controls="sidebar">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2 class="h2">Manage Plans</h2>
+                </div>
+
+                <div class="container mt-5 table-container">
+                    <div class="d-flex justify-content-between mb-3">
+                        <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#addPlanModal">Add New Plan</button>
+                        <input type="text" id="searchInput" class="form-control w-25" placeholder="Search plans...">
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover text-center">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Plan Name</th>
+                                    <th>Price (₹)</th>
+                                    <th>Data (GB)</th>
+                                    <th>Duration (Days)</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="plansTableBody">
+                                <tr>
+                                    <td>Unlimited</td>
+                                    <td>499</td>
+                                    <td>1.5</td>
+                                    <td>56</td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm btn-action mt-1" onclick="editRow(this)"><i class="fas fa-edit p-1"></i>Modify</button>
+                                        <button class="btn btn-danger btn-sm btn-action mt-1 " onclick="confirmDelete(this)"><i class="fa fa-trash p-1" aria-hidden="true"></i>Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Premium</td>
+                                    <td>799</td>
+                                    <td>2.5</td>
+                                    <td>56</td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm btn-action mt-1" onclick="editRow(this)"><i class="fas fa-edit p-1"></i>Modify</button>
+                                        <button class="btn btn-danger btn-sm btn-action mt-1" onclick="confirmDelete(this)"><i class="fa fa-trash p-1" aria-hidden="true"></i>Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Data</td>
+                                    <td>49</td>
+                                    <td>10</td>
+                                    <td>1</td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm btn-action mt-1" onclick="editRow(this)"><i class="fas fa-edit p-1"></i>Modify</button>
+                                        <button class="btn btn-danger btn-sm btn-action mt-1" onclick="confirmDelete(this)"><i class="fa fa-trash p-1" aria-hidden="true"></i>Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Unlimited</td>
+                                    <td>499</td>
+                                    <td>1.5</td>
+                                    <td>56</td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm btn-action mt-1" onclick="editRow(this)"><i class="fas fa-edit p-1"></i>Modify</button>
+                                        <button class="btn btn-danger btn-sm btn-action mt-1" onclick="confirmDelete(this)"><i class="fa fa-trash p-1" aria-hidden="true"></i>Delete</button>
+                                    </td>
+                                </tr>
+                                <!-- Rows will be added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Add/Edit Plan Modal -->
+                <div class="modal fade" id="addPlanModal" tabindex="-1" aria-labelledby="addPlanModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="addPlanModalLabel">Add / Modify Plan</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="planForm">
+                                    <input type="hidden" id="editIndex">
+                                    <div class="mb-3">
+                                        <label class="form-label">Plan Name</label>
+                                        <input type="text" class="form-control" id="planName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Price</label>
+                                        <input type="number" class="form-control" id="planPrice" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Data (GB)</label>
+                                        <input type="number" class="form-control" id="planData" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Duration (Days)</label>
+                                        <input type="number" class="form-control" id="planDuration" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-outline-dark w-100">Save Plan</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        &copy; 2023 Mobi Comm. All rights reserved.
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById("planForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const name = document.getElementById("planName").value;
+            const price = document.getElementById("planPrice").value;
+            const data = document.getElementById("planData").value;
+            const duration = document.getElementById("planDuration").value;
+            const index = document.getElementById("editIndex").value;
+            const tableBody = document.getElementById("plansTableBody");
+
+            if (!name || !price || !data || !duration) {
+                alert("Please fill all fields.");
+                return;
+            }
+
+            if (index) {
+                const row = tableBody.rows[index];
+                row.cells[0].innerText = name;
+                row.cells[1].innerText = `₹${price}`;
+                row.cells[2].innerText = `${data} GB`;
+                row.cells[3].innerText = `${duration} days`;
+            } else {
+                const row = tableBody.insertRow();
+                row.innerHTML = `
+                    <td>${name}</td>
+                    <td>₹${price}</td>
+                    <td>${data} GB/day</td>
+                    <td>${duration} days</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm btn-action mt-1" onclick="editRow(this)"><i class="fas fa-edit p-1"></i>Modify</button>
+                        <button class="btn btn-danger btn-sm btn-action mt-1" onclick="confirmDelete(this)"><i class="fa fa-trash p-1" aria-hidden="true"></i>Delete</button>
+                    </td>
+                `;
+            }
+
+            document.getElementById("planForm").reset();
+            document.getElementById("editIndex").value = "";
+            var addPlanModal = new bootstrap.Modal(document.getElementById("addPlanModal"));
+            addPlanModal.hide();
+        });
+
+        function editRow(button) {
+            const row = button.closest("tr");
+            document.getElementById("planName").value = row.cells[0].innerText;
+            document.getElementById("planPrice").value = row.cells[1].innerText.replace("₹", "");
+            document.getElementById("planData").value = row.cells[2].innerText.replace(" GB", "");
+            document.getElementById("planDuration").value = row.cells[3].innerText.replace(" days", "");
+            document.getElementById("editIndex").value = row.rowIndex - 1;
+            var addPlanModal = new bootstrap.Modal(document.getElementById("addPlanModal"));
+            addPlanModal.show();
+        }
+
+        function confirmDelete(button) {
+            if (confirm("Are you sure you want to delete this plan?")) {
+                deleteRow(button);
+            }
+        }
+
+        function deleteRow(button) {
+            button.closest("tr").remove();
+        }
+
+        // Search functionality
+        document.getElementById("searchInput").addEventListener("input", function() {
+            const searchTerm = this.value.toLowerCase();
+            const rows = document.querySelectorAll("#plansTableBody tr");
+            rows.forEach(row => {
+                const name = row.cells[0].innerText.toLowerCase();
+                if (name.includes(searchTerm)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

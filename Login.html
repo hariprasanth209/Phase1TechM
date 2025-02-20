@@ -7,7 +7,8 @@
     <!-- <link rel="stylesheet" href="/css/main.main.css"> -->
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
+   
+   <style>
         body{
             background-color:#feffeb;
         }
@@ -22,7 +23,30 @@
         .card{
             background-color: #41404000;
         }
-
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
         @media (min-width: 768px) {
             .login-container {
                 background: none;
@@ -53,26 +77,97 @@
                         <h2 class="mb-0">MOBICOMM</h2>
                     </div>
                     <h3 class="h3 mb-4">Login</h3>
-                    <form>
-                        <div class="mb-3">
-                            <label for="mobile" class="form-label">Mobile Number</label>
-                            <input class="form-control" type="tel" inputmode="numeric" maxlength="10" id="mobile" placeholder="Enter your mobile number" oninput="this.value =this.value.replace(/[^0-9]/g, '')" required>
-                        </div>
-                        <div class="mb-3">
-                            <button type="button" class="btn btn-dark w-50">Generate OTP</button>
-                        </div>
-                        <div class="mb-3">
-                            <label for="otp" class="form-label">OTP</label>
-                            <input  inputmode="numeric" maxlength="6" oninput="this.value=this.value.replace(/[^0-9]/g, '')" class="form-control" id="otp" placeholder="Enter OTP" required>
+                    <form id="loginForm">
+                        <div>
+                            <label for="mobile">Mobile Number</label>
+                            <input type="tel" inputmode="numeric" maxlength="10" id="mobile" placeholder="Enter your mobile number" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+                            <div id="mobileError" class="error"></div>
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-dark w-50">Login</button>
+                            <button type="button" onclick="verifyMobile()">Generate OTP</button>
+                        </div>
+                        <div>
+                            <label for="otp">OTP</label>
+                            <input type="text" inputmode="numeric" maxlength="6" id="otp" placeholder="Enter OTP" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+                            <div id="otpError" class="error"></div>
+                        </div>
+                        <div>
+                            <button type="submit">Login</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        // Mock user data (replace with fetch from users.json if needed)
+        const users = [
+            { mobile: "1234567890", otp: "123456" },
+            { mobile: "9876543210", otp: "654321" }
+        ];
+
+        // Function to clear error messages after 6 seconds
+        function clearError(errorElement) {
+            setTimeout(() => {
+                errorElement.textContent = ""; // Clear the error message
+            }, 6000); // 6000 milliseconds = 6 seconds
+        }
+
+        function verifyMobile() {
+            const mobile = document.getElementById("mobile").value.trim();
+            const mobileError = document.getElementById("mobileError");
+            mobileError.textContent = ""; // Clear previous error message
+
+            if (mobile === "") {
+                mobileError.textContent = "Please enter your mobile number.";
+                clearError(mobileError); // Clear error after 6 seconds
+                return;
+            }
+
+            const user = users.find(user => user.mobile === mobile);
+
+            if (!user) {
+                mobileError.textContent = "Mobile number not registered.";
+                clearError(mobileError); // Clear error after 6 seconds
+                return;
+            }
+
+            mobileError.textContent = "OTP sent successfully!";
+            clearError(mobileError); // Clear success message after 6 seconds
+            localStorage.setItem("otp", user.otp); // Store OTP for validation
+        }
+
+        function validateOTP(event) {
+            event.preventDefault();
+            const enteredOTP = document.getElementById("otp").value.trim();
+            const otpError = document.getElementById("otpError");
+            otpError.textContent = ""; // Clear previous error message
+
+            if (enteredOTP === "") {
+                otpError.textContent = "Please enter the OTP.";
+                clearError(otpError); // Clear error after 6 seconds
+                return;
+            }
+
+            const storedOTP = localStorage.getItem("otp");
+
+            if (enteredOTP !== storedOTP) {
+                otpError.textContent = "Invalid OTP. Please try again.";
+                clearError(otpError); // Clear error after 6 seconds
+                return;
+            }
+
+            // Store the logged-in mobile number in localStorage
+            const mobile = document.getElementById("mobile").value.trim();
+            localStorage.setItem("loggedInMobile", mobile);
+
+            alert("Login Successful");
+            window.location.href = "index.html"; // Redirect to the home page
+        }
+
+        // Attach the validateOTP function to the form submission
+        document.getElementById("loginForm").addEventListener("submit", validateOTP);
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

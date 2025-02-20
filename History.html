@@ -44,32 +44,33 @@
     </div>
      
     <script>
-        window.onload = function() {
-          let history = JSON.parse(localStorage.getItem("paymentHistory")) || [];
-          let historyContainer = document.getElementById("historyContainer");
-      
-          if (history.length === 0) {
-            historyContainer.innerHTML = "<p>No payment history available.</p>";
-            return;
-          }
-      
-          // Display each entry in a new card
-          history.forEach((entry, index) => {
-            let historyCard = `
-              <div class="card shadow rounded-4 mb-3">
-                <div class="card-header bg-dark text-white">
-                  <h5>Purchase #${index + 1} - ${entry.timestamp}</h5>
-                </div>
-                <div class="card-body">
-                  <p><strong>Price: </strong>${entry.planPrice}</p>
-                  <p><strong>Data: </strong>${entry.planData}</p>
-                  <p><strong>Validity: </strong>${entry.validDays}</p>
-                  <p><strong>UPI ID: </strong>${entry.payID}</p>
-                </div>
-              </div>
-            `;
-            historyContainer.innerHTML += historyCard;
-          });
+       window.onload = function () {
+            const history = JSON.parse(localStorage.getItem("paymentHistory")) || [];
+            const historyContainer = document.getElementById("historyContainer");
+
+            if (history.length === 0) {
+                historyContainer.innerHTML = "<p>No payment history available.</p>";
+                return;
+            }
+
+            // Display each entry in a new card
+            history.forEach((entry, index) => {
+                const historyCard = `
+                    <div class="card shadow rounded-4 mb-3">
+                        <div class="card-header bg-dark text-white">
+                            <h5>Purchase #${index + 1} - ${entry.timestamp}</h5>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Price: </strong>${entry.planPrice}</p>
+                            <p><strong>Data: </strong>${entry.planData}</p>
+                            <p><strong>Validity: </strong>${entry.validDays}</p>
+                            <p><strong>Phone: </strong>${entry.phone}</p>
+                            <p><strong>UPI ID: </strong>${entry.payID}</p>
+                        </div>
+                    </div>
+                `;
+                historyContainer.innerHTML += historyCard;
+            });
         };
       </script>
       

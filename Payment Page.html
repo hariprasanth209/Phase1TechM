@@ -35,6 +35,7 @@
                     <p><strong>Price: </strong><span id="planPrice"></span></p>
                     <p><strong>Data: </strong><span id="planData"></span></p>
                     <p><strong>Validity: </strong><span id="validDays"></span></p>
+                    <p><strong>Phone: </strong><span id="phone"></span></p>
                   </div>
                 </div>
               </div>
@@ -256,38 +257,55 @@
           </div>
     </div>
     <script>
-      function savePaymentDetails() {
-        let payID = document.getElementById("payID").value;
-        let planPrice = localStorage.getItem("planPrice");
-        let planData = localStorage.getItem("planData");
-        let validDays = localStorage.getItem("validDays");
-    
-        if (!payID) {
-          alert("Please enter your UPI ID before making the payment.");
-          return;
+      
+        // Display the appropriate mobile number (logged-in or guest)
+        const loggedInMobile = localStorage.getItem("loggedInMobile");
+        const guestMobile = localStorage.getItem("guestMobile");
+
+        const phone = guestMobile || loggedInMobile;
+        document.getElementById("phone").innerText = phone;
+
+        function savePaymentDetails() {
+            const payID = document.getElementById("payID").value.trim();
+            const planPrice = localStorage.getItem("planPrice");
+            const planData = localStorage.getItem("planData");
+            const validDays = localStorage.getItem("validDays");
+
+            if (!payID) {
+                alert("Please enter your UPI ID before making the payment.");
+                return;
+            }
+
+            if (!planPrice || !planData || !validDays) {
+                alert("Plan details are missing. Please select a plan again.");
+                return;
+            }
+
+            // Create a new entry object
+            const newEntry = {
+                planPrice: planPrice,
+                planData: planData,
+                validDays: validDays,
+                phone: phone, // Use the displayed phone number
+                payID: payID,
+                timestamp: new Date().toLocaleString() // Store purchase time
+            };
+
+            // Retrieve existing history from localStorage or create an empty array
+            const history = JSON.parse(localStorage.getItem("paymentHistory")) || [];
+
+            // Add the new entry to history
+            history.push(newEntry);
+
+            // Save updated history back to localStorage
+            localStorage.setItem("paymentHistory", JSON.stringify(history));
+
+            // Clear guest mobile after payment
+            localStorage.removeItem("guestMobile");
+
+            // Redirect to history page
+            window.location.href = "history.html";
         }
-    
-        // Create a new entry object
-        let newEntry = {
-          planPrice: planPrice,
-          planData: planData,
-          validDays: validDays,
-          payID: payID,
-          timestamp: new Date().toLocaleString() // Store purchase time
-        };
-    
-        // Retrieve existing history from localStorage or create an empty array
-        let history = JSON.parse(localStorage.getItem("paymentHistory")) || [];
-    
-        // Add the new entry to history
-        history.push(newEntry);
-    
-        // Save updated history back to localStorage
-        localStorage.setItem("paymentHistory", JSON.stringify(history));
-    
-        // Redirect to history page
-        window.location.href = "history.html";
-      }
     </script>
     
     

@@ -9,12 +9,12 @@ header .navbar .container-fluid{
     padding: 4px;
     color: black;
 }
-footer{
+/* footer{
     background-color: #2C2C2C;
     color: #ffffff;
     margin-top: 90px;
     padding: 15px;
-}
+} */
 #FAQS{
     background-color: rgb(229 229 229);
     border-radius: 15px;

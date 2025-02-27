@@ -29,8 +29,8 @@
           <div class="container my-5">
             <div class="row justify-content-center">
               <div class="col-md-6">
-                <div class="card w-100 LoginCard rounded-5 shadow" style="background-color:rgba(245, 222, 179, 0.871);">
-                  <div class="card-body d-flex flex-column align-items-center" style="background-color: rgba(28, 28, 28, 0);">
+                <div class="card w-100 LoginCard rounded-5 shadow">
+                  <div class="card-body d-flex flex-column align-items-center">
                     <h3 class="m-3">Selected Plan</h3>
                     <p><strong>Price: </strong><span id="planPrice"></span></p>
                     <p><strong>Data: </strong><span id="planData"></span></p>
@@ -44,7 +44,7 @@
         </div>
         </div>
 <div class="container">
-          <h1 class="display-5 text-center">Payment</h1>
+          <h1 class="text-center mt-5">Payment</h1>
           <!-- Payments options -->
           <div class="container d-flex justify-content-center">
             
@@ -124,12 +124,16 @@
                             </li>
                             <li class="upi-items d-flex flex-column p-3">
                               <a href="#" class="d-flex flex-column align-items-center text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <img src="Assets/Images/More1-icon.png" alt="More Banks" class="paymentIcon">
+                                <img src="Assets/Images/More-Icon.png" alt="More Banks" class="paymentIcon">
                                 <p class="mt-2">More</p>
                               </a>
                             </li>
                           </ul>
                         </div>
+                        <form action="">
+                          <input type="text" placeholder="UPI ID" class="form-control mb-2" id="payID">
+                          <a href="#" class="btn btn-dark" onclick="savePaymentDetails()">Make Payment</a>
+                        </form>
                       </div>
                     </div>
                   </div>
@@ -203,10 +207,6 @@
                       <img src="Assets/Images/indian-overseas-bank-logo.png" alt="Indian Overseas Bank" class="img-fluid me-2" width="40">
                       <p class="mb-0">Indian Overseas Bank</p>
                     </div>
-                    <div class="list-group-item d-flex align-items-center">
-                      <img src="Assets/Images/StandardCharteredBank-logo.png" alt="Standard Chartered Bank" class="img-fluid me-2" width="40">
-                      <p class="mb-0">Standard Chartered Bank</p>
-                    </div>
                     
                   </div>
                 </div>
@@ -257,55 +257,64 @@
           </div>
     </div>
     <script>
-      
-        // Display the appropriate mobile number (logged-in or guest)
-        const loggedInMobile = localStorage.getItem("loggedInMobile");
-        const guestMobile = localStorage.getItem("guestMobile");
+      document.addEventListener("DOMContentLoaded", function () {
+  // Retrieve the logged-in and guest mobile numbers from localStorage
+  const loggedInMobile = localStorage.getItem("loggedInMobile");
+  const guestMobile = localStorage.getItem("guestMobile");
+  const phone = guestMobile || loggedInMobile;
+  const phoneElement = document.getElementById("phone");
+  if (phone) {
+    phoneElement.innerText = phone;
+  } else {
+    phoneElement.innerText = "No mobile number found.";
+  }
+});
 
-        const phone = guestMobile || loggedInMobile;
-        document.getElementById("phone").innerText = phone;
+function savePaymentDetails() {
+  const payID = document.getElementById("payID").value.trim();
+  const planPrice = localStorage.getItem("planPrice");
+  const planData = localStorage.getItem("planData");
+  const validDays = localStorage.getItem("validDays");
+  const phoneElement = document.getElementById("phone");
+  const phone = phoneElement.innerText;
 
-        function savePaymentDetails() {
-            const payID = document.getElementById("payID").value.trim();
-            const planPrice = localStorage.getItem("planPrice");
-            const planData = localStorage.getItem("planData");
-            const validDays = localStorage.getItem("validDays");
+  if (!payID) {
+    alert("Please enter your UPI ID before making the payment.");
+    return;
+  }
+  if (!planPrice || !planData || !validDays) {
+    alert("Plan details are missing. Please select a plan again.");
+    return;
+  }
 
-            if (!payID) {
-                alert("Please enter your UPI ID before making the payment.");
-                return;
-            }
+  const newEntry = {
+    planPrice: planPrice,
+    planData: planData,
+    validDays: validDays,
+    phone: phone, // Use the displayed phone number
+    payID: payID,
+    timestamp: new Date().toLocaleString() // Store purchase time
+  };
 
-            if (!planPrice || !planData || !validDays) {
-                alert("Plan details are missing. Please select a plan again.");
-                return;
-            }
-
-            // Create a new entry object
-            const newEntry = {
-                planPrice: planPrice,
-                planData: planData,
-                validDays: validDays,
-                phone: phone, // Use the displayed phone number
-                payID: payID,
-                timestamp: new Date().toLocaleString() // Store purchase time
-            };
-
-            // Retrieve existing history from localStorage or create an empty array
-            const history = JSON.parse(localStorage.getItem("paymentHistory")) || [];
-
-            // Add the new entry to history
-            history.push(newEntry);
-
-            // Save updated history back to localStorage
-            localStorage.setItem("paymentHistory", JSON.stringify(history));
-
-            // Clear guest mobile after payment
-            localStorage.removeItem("guestMobile");
-
-            // Redirect to history page
-            window.location.href = "history.html";
-        }
+  // Send data to JSON Server
+  fetch("http://localhost:3000/payments", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newEntry),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Payment details saved to JSON Server:", data);
+      localStorage.removeItem("guestMobile");
+      window.location.href = "history.html";
+    })
+    .catch((error) => {
+      console.error("Error saving payment details:", error);
+      alert("Failed to save payment details. Please try again.");
+    });
+}
     </script>
     
     

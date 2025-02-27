@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - [App Name]</title>
+  <style>
+   body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+}
+
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.feature-grid, .team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.team-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.testimonial-carousel {
+  display: flex;
+  overflow-x: auto;
+  padding: 20px;
+}
+
+.cta {
+  text-align: center;
+  padding: 100px 20px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.cta-button {
+  background: #ff6f61;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 50px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.cta-button:hover {
+  background: #ff3b2f;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in;
+}
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <h1 class="fade-in">MobiComm</h1>
+    <p class="fade-in">Empowering Your Mobile Experience</p>
+    <button class="fade-in">Learn More</button>
+  </section>
+  <section class="mission">
+    <div class="card fade-in">
+      <div class="icon">💡</div>
+      <h2>Our Mission</h2>
+      <p>To provide seamless, affordable, and reliable mobile prepaid solutions that keep you connected anytime, anywhere.</p>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2 class="section-title fade-in">Why Choose Us?</h2>
+    <div class="feature-grid">
+      <div class="card fade-in">
+        <div class="icon">📱</div>
+        <h3>Instant Recharge</h3>
+        <p>Recharge your mobile in seconds with just a few taps.</p>
+      </div>
+      <div class="card fade-in">
+        <div class="icon">🌍</div>
+        <h3>Global Coverage</h3>
+        <p>Stay connected even when you're abroad.</p>
+      </div>
+      <div class="card fade-in">
+        <div class="icon">🔒</div>
+        <h3>Secure Payments</h3>
+        <p>Your transactions are safe with our advanced encryption.</p>
+      </div>
+      <div class="card fade-in">
+        <div class="icon">🎁</div>
+        <h3>Exclusive Offers</h3>
+        <p>Enjoy discounts and rewards on every recharge.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="team">
+    <h2 class="section-title fade-in">Meet Our Team</h2>
+    <div class="team-grid">
+      <div class="card fade-in">
+        <img src="https://via.placeholder.com/150" alt="John Doe" class="team-photo">
+        <h3>John Doe</h3>
+        <p class="role">CEO</p>
+        <p class="bio">With over 10 years of experience in the tech industry, John leads our vision to revolutionize mobile prepaid solutions.</p>
+      </div>
+      <div class="card fade-in">
+        <img src="https://via.placeholder.com/150" alt="Jane Smith" class="team-photo">
+        <h3>Jane Smith</h3>
+        <p class="role">CTO</p>
+        <p class="bio">Jane is a tech innovator who ensures our platform is cutting-edge and user-friendly.</p>
+      </div>
+      <div class="card fade-in">
+        <img src="https://via.placeholder.com/150" alt="Alex Brown" class="team-photo">
+        <h3>Alex Brown</h3>
+        <p class="role">Head of Marketing</p>
+        <p class="bio">Alex drives our brand's growth and ensures our users are always informed about the latest features.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2 class="section-title fade-in">What Our Users Say</h2>
+    <div class="testimonial-carousel">
+      <div class="card fade-in">
+        <p class="quote">"This app has made recharging so easy and fast!"</p>
+        <p class="author">- Sarah T.</p>
+      </div>
+      <div class="card fade-in">
+        <p class="quote">"I love the exclusive offers and discounts."</p>
+        <p class="author">- Mike L.</p>
+      </div>
+      <div class="card fade-in">
+        <p class="quote">"Great app with excellent customer support."</p>
+        <p class="author">- Emily R.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="cta-content">
+      <h2 class="fade-in">Join Thousands of Happy Users</h2>
+      <button class="cta-button fade-in">Download Now</button>
+    </div>
+  </section>
+  <script>
+    // Add scroll animations using Intersection Observer
+    const cards = document.querySelectorAll('.card');
+  
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+  
+    cards.forEach(card => {
+      observer.observe(card);
+    });
+  </script>
+</body>
+</html>

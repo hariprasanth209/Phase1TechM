@@ -1,0 +1,40 @@
+{
+    "users": [
+      {
+        "name": "Rajesh",
+        "mobile": "9876543210",
+        "email": "rajesh@example.com",
+        "plan": "Unlimited 499",
+        "dateOfPayment": "2025-02-01",
+        "paymentMode": "Credit Card",
+        "validDays": 3
+      },
+      {
+        "name": "Vikram",
+        "mobile": "9123456789",
+        "email": "vikram@example.com",
+        "plan": "Premium 799",
+        "dateOfPayment": "2025-01-20",
+        "paymentMode": "Net Banking",
+        "validDays": 2
+      },
+      {
+        "name": "Koushik",
+        "mobile": "0987654321",
+        "email": "koushik@example.com",
+        "plan": "Premium 799",
+        "dateOfPayment": "2025-01-20",
+        "paymentMode": "Debit Card",
+        "validDays": 1
+      },
+      {
+        "name": "Giri",
+        "mobile": "9167892345",
+        "email": "giri@example.com",
+        "plan": "Premium 799",
+        "dateOfPayment": "2025-01-20",
+        "paymentMode": "UPI",
+        "validDays": 3
+      }
+    ]
+  }

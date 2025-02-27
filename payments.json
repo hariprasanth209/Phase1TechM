@@ -1,0 +1,22 @@
+{
+  "payments": [
+    {
+      "id": "ba69",
+      "planPrice": "₹3599",
+      "planData": "2GB/Day",
+      "validDays": "365 Days",
+      "phone": "9876543210",
+      "payID": "asdfghj12345678",
+      "timestamp": "25/2/2025, 7:17:31 am"
+    },
+    {
+      "id": "01f3",
+      "planPrice": "₹299",
+      "planData": "1GB/Day",
+      "validDays": "28 Days",
+      "phone": "1234567890",
+      "payID": "asdfghj12345678",
+      "timestamp": "26/2/2025, 6:42:27 am"
+    }
+  ]
+}

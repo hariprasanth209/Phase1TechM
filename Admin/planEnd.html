@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="Assets/CSS/Style.css">
 </head>
 <body>
+    
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
@@ -38,7 +39,6 @@
                     </ul>
                 </div>
             </nav>
-
             <main class="col-md-9 ms-sm-auto col-lg-10 main-content">
                 <!-- Page Title -->
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -94,42 +94,7 @@
                             </tr>
                         </thead>
                         <tbody id="expiry-users">
-                            <tr>
-                                <td>Rajesh</td>
-                                <td>9876543210</td>
-                                <td>rajesh@example.com</td>
-                                <td>Unlimited 499</td>
-                                <td>2025-02-01</td>
-                                <td>Credit Card</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                                <td>Vikram</td>
-                                <td>9123456789</td>
-                                <td>vikram@example.com</td>
-                                <td>Premium 799</td>
-                                <td>2025-01-20</td>
-                                <td>Net Banking</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>Koushik</td>
-                                <td>0987654321</td>
-                                <td>koushik@example.com</td>
-                                <td>Premium 799</td>
-                                <td>2025-01-20</td>
-                                <td>Debit Card</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>Giri</td>
-                                <td>9167892345</td>
-                                <td>giri@example.com</td>
-                                <td>Premium 799</td>
-                                <td>2025-01-20</td>
-                                <td>UPI</td>
-                                <td>3</td>
-                            </tr>
+                            <!-- Rows will be dynamically populated here -->
                         </tbody>
                     </table>
                 </div>
@@ -138,57 +103,90 @@
     </div>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <p>&copy; 2025 Mobi Comm. All rights reserved.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        // Fetch data from JSON server and populate the table
+        async function fetchData() {
+            try {
+                const response = await fetch('http://localhost:3000/users'); // Replace with your JSON server endpoint
+                const data = await response.json();
+                populateTable(data);
+                filterTable(); // Apply initial filtering and sorting
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        // Populate the table with data
+        function populateTable(data) {
+            const tbody = document.getElementById('expiry-users');
+            tbody.innerHTML = ''; // Clear existing rows
+
+            data.forEach(user => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.name}</td>
+                    <td>${user.mobile}</td>
+                    <td>${user.email}</td>
+                    <td>${user.plan}</td>
+                    <td>${user.dateOfPayment}</td>
+                    <td>${user.paymentMode}</td>
+                    <td>${user.validDays}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Filter and sort the table
         function filterTable() {
             // Get selected values from dropdowns
-            const sortOrder = document.getElementById("sortValidDays").value;
-            const selectedPlan = document.getElementById("filterPlans").value;
-            const selectedPayment = document.getElementById("filterPayment").value;
-    
+            const sortOrder = document.getElementById('sortValidDays').value;
+            const selectedPlan = document.getElementById('filterPlans').value;
+            const selectedPayment = document.getElementById('filterPayment').value;
+
             // Get table rows
-            const tbody = document.getElementById("expiry-users");
-            const rows = Array.from(tbody.querySelectorAll("tr"));
-    
+            const tbody = document.getElementById('expiry-users');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+
             // Filter rows based on selected plan and payment mode
             rows.forEach(row => {
                 const plan = row.cells[3].textContent;
                 const paymentMode = row.cells[5].textContent;
-    
+
                 // Check if the row matches the selected filters
-                const planMatch = selectedPlan === "all" || plan === selectedPlan;
-                const paymentMatch = selectedPayment === "all" || paymentMode === selectedPayment;
-    
+                const planMatch = selectedPlan === 'all' || plan === selectedPlan;
+                const paymentMatch = selectedPayment === 'all' || paymentMode === selectedPayment;
+
                 if (planMatch && paymentMatch) {
-                    row.style.display = ""; // Show the row
+                    row.style.display = ''; // Show the row
                 } else {
-                    row.style.display = "none"; // Hide the row
+                    row.style.display = 'none'; // Hide the row
                 }
             });
-    
+
             // Sort visible rows based on valid days
-            const visibleRows = rows.filter(row => row.style.display !== "none");
+            const visibleRows = rows.filter(row => row.style.display !== 'none');
             visibleRows.sort((a, b) => {
                 const daysA = parseInt(a.cells[6].textContent);
                 const daysB = parseInt(b.cells[6].textContent);
-                return sortOrder === "asc" ? daysA - daysB : daysB - daysA;
+                return sortOrder === 'asc' ? daysA - daysB : daysB - daysA;
             });
-    
+
             // Reorder the rows in the DOM without clearing the table
             visibleRows.forEach(row => tbody.appendChild(row));
         }
-    
-        // Automatically re-filter when sort order or filter dropdowns change
-        document.getElementById("sortValidDays").addEventListener("change", filterTable);
-        document.getElementById("filterPlans").addEventListener("change", filterTable);
-        document.getElementById("filterPayment").addEventListener("change", filterTable);
-    
-        // Initial filter on page load
-        filterTable();
+
+        // Add event listeners to dropdowns
+        document.getElementById('sortValidDays').addEventListener('change', filterTable);
+        document.getElementById('filterPlans').addEventListener('change', filterTable);
+        document.getElementById('filterPayment').addEventListener('change', filterTable);
+
+        // Fetch data and populate the table on page load
+        fetchData();
     </script>
 </body>
 </html>

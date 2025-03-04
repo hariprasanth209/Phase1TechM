@@ -1,0 +1,277 @@
+body {
+    position: relative;
+    background: none; /* Remove default background */
+}
+
+/* Create a blurred background */
+.body-bg {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../Images/OIP.jpg') no-repeat center center; /* Default image */
+    background-size: cover;
+    filter: blur(3px); /* Apply blur */
+    z-index: -1; /* Send it to the background */
+}
+
+
+  .payment-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  .selected-plan {
+    background: linear-gradient(244deg, #744aec, #16fff257);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* Icon Container */
+.icon-container {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Image Styling */
+.icon-container img {
+    width: 100%;  /* Ensure it fills the container */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 220px;
+    opacity: 1; /* Ensure it’s visible */
+    transition: transform 0.3s ease-in-out;
+}
+
+.icon-container img:hover {
+    transform: scale(1.2);
+    opacity: 0.9;
+}
+
+
+  .payment-form {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* New Radio Button Styles */
+.rad-label {
+display: flex;
+align-items: center;
+border-radius: 100px;
+padding: 14px 16px;
+margin: 10px;
+cursor: pointer;
+transition: 0.3s;
+}
+
+.rad-label:hover,
+.rad-label:focus-within {
+background: hsla(172, 94%, 86%, 0.682);
+}
+
+.rad-input {
+position: absolute;
+left: 0;
+top: 0;
+width: 1px;
+height: 1px;
+opacity: 0;
+z-index: -1;
+}
+
+.rad-design {
+width: 22px;
+height: 22px;
+border-radius: 100px;
+background: linear-gradient(to right bottom, hsl(154, 97%, 62%), hsl(225, 97%, 62%));
+position: relative;
+}
+
+.rad-design::before {
+content: '';
+display: inline-block;
+width: inherit;
+height: inherit;
+border-radius: inherit;
+background: hsl(0, 0%, 90%);
+transform: scale(1.1);
+transition: 0.3s;
+}
+
+.rad-input:checked + .rad-design::before {
+transform: scale(0);
+}
+
+.rad-text {
+color: hsl(0, 0%, 0%);
+margin-left: 14px;
+letter-spacing: 3px;
+text-transform: uppercase;
+font-size: 18px;
+transition: 0.3s;
+}
+
+.rad-input:checked ~ .rad-text {
+color: hsl(0, 0%, 0%);
+font-weight: 900;
+}
+
+/* Responsive Layout */
+.rad-container {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+border: 1px solid rgb(2, 224, 254);
+    border-radius: 50px;
+    box-shadow: 0 0 5px;
+}
+
+/* CSS */
+.button-33 {
+    background-color: #c2fbd7;
+    border-radius: 100px;
+    box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+    color: rgb(0, 58, 2);
+    cursor: pointer;
+    display: inline-block;
+    font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button-33:hover {
+    box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
+    transform: scale(1.05) rotate(-1deg);
+  }
+  .fa-soild{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    color: black;
+  }
+
+
+
+/* FAQ Section Styling */
+.faq-container {
+    background: linear-gradient(135deg, #f8f9fa, #e3f2fd);
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* FAQ Question Styling */
+.faq-question {
+    font-size: 18px;
+    font-weight: bold;
+    color: #060606;
+    transition: all 0.3s ease-in-out;
+}
+
+.faq-question:hover {
+    color: #0056b3;
+    background-color: rgba(0, 123, 255, 0.1);
+}
+
+/* FAQ Answer Styling */
+.faq-answer {
+    font-size: 16px;
+    color: #343a40;
+    background: #f1f8ff;
+    border-left: 4px solid #007bff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Icon Styling */
+.faq-question i {
+    color: #007bff;
+    font-size: 20px;
+}
+
+/* Accordion Item Hover Effect */
+.accordion-item {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.accordion-item:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .faq-container {
+        padding: 30px;
+    }
+
+    .faq-question {
+        font-size: 16px;
+    }
+
+    .faq-answer {
+        font-size: 14px;
+    }
+}
+
+
+@media (max-width: 768px) {
+.rad-container {
+  flex-direction: column;
+  border-radius: 15px;
+  padding: 13px;
+}
+
+.rad-label {
+  margin: 5px 0;
+}
+
+.selected-plan {
+    padding: 15px;
+}
+
+
+
+}
+@media (max-width: 615px) {
+.icon-container img {
+    display: none;
+}
+}

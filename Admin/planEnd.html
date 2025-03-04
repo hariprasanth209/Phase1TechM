@@ -13,7 +13,7 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
                 <div class="position-sticky pt-3">
                     <!-- Close Button for Small Screens -->
                     <div class="d-flex justify-content-end d-md-none">
@@ -34,7 +34,7 @@
                             <a class="nav-link" href="userHistory.html"><i class="fas fa-history"></i> User History</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fas fa-cog"></i> Settings</a>
+                            <a class="nav-link" href="setting.html"><i class="fas fa-cog"></i> Settings</a>
                         </li>
                     </ul>
                 </div>
@@ -112,7 +112,7 @@
         // Fetch data from JSON server and populate the table
         async function fetchData() {
             try {
-                const response = await fetch('http://localhost:3000/users'); // Replace with your JSON server endpoint
+                const response = await fetch('http://localhost:3000/userPlanValidity'); // Replace with your JSON server endpoint
                 const data = await response.json();
                 populateTable(data);
                 filterTable(); // Apply initial filtering and sorting

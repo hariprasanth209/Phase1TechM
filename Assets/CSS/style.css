@@ -19,6 +19,13 @@ footer{
     background-color: rgb(229 229 229);
     border-radius: 15px;
 }
+.offcanvas-header {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.offcanvas-body{
+    background-image: url('red-and-black-background-with-lines-2567.jpg');
+}
 .navbar{
     padding-top: 0%;
     padding-bottom: 0%;
@@ -30,7 +37,9 @@ footer{
 .navbar .container-fluid .collapse .navbar-nav .nav-item a {
     color: rgb(7, 7, 7);
     background-color: none;
-    border-radius: 9px;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    
     position: relative;
     text-decoration: none;
     font-weight: 600;
@@ -42,7 +51,7 @@ footer{
     position: absolute;
     /* border:2px solid red ; */
     left: 50%;
-    bottom: -12px;
+    bottom: -10px;
     width: 0%;
     height: 3px;
     background-color: rgb(18, 18, 18);
@@ -53,8 +62,12 @@ footer{
     color: #000000;
 }
 .navbar .container-fluid .collapse .navbar-nav .nav-item a:hover {
-    color:#fff2af87;
-    background-color: #2C2C2C;
+    color:#000000;
+    background-color: #ffd98e0f;
+    box-shadow: 5px 5px 5px rgb(225, 255, 255);
+    padding: 12px;
+    border: 2.2px solid white;
+    /* width:max-content !important; */
 }
 
 .navbar .container-fluid .collapse .navbar-nav .nav-item a:hover::after {
@@ -67,6 +80,8 @@ footer{
     border:1.9px solid #663333;
     color: rgb(249, 252, 255);
 }
+
+
 .btn-ripple {
     background: linear-gradient(45deg, #f53b2a, #ffbb55);
     border: none;
@@ -113,17 +128,65 @@ footer{
     transform: translateY(3px);
     box-shadow: 0 3px 0 #cc5a4e;
   }
-.filterAll{
-    background-color: #e5e5e5;
+/* Filter Container */
+.filterAll {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Filters Navigation */
+.filters {
+    background: #f1f1f1;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    padding-right: 25px;
+}
+
+/* Filter Items */
+.filter-option {
+    position: relative;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    padding: 12px 20px;
+    border-radius: 10px;
+    transition: all 0.9s ease-in-out;
+}
+
+/* Hover Effect: Background Enlarges & Rises */
+.filter-option:hover {
+    background: rgba(243, 243, 243, 0.647);
+    color: rgb(0, 0, 0);
+    transform: translateY(-9px) scale(1.05);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(197, 0, 0, 0.3);
+}
+
+/* Active Tab Style */
+.filter-option.active {
+    background: #007bff;
     color: white;
-    border-radius: 12px;
-    /* padding-bottom: 5px; */
+    font-weight: bold;
+    transform: translateY(-3px) scale(1.08);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 123, 255, 0.3);
 }
-.filter-option:hover{
-    background-color:#b7deff;
-    color: #020202;
-    text-shadow:0 0 1px #000000;
+
+/* Smooth Transition */
+.filter-option,
+.filter-option:hover,
+.filter-option.active {
+    transition: all 0.3s ease-in-out;
 }
+
+
+
 
 .carousels{
     padding-top: 20px;
@@ -146,6 +209,7 @@ footer{
     border-radius: 7px;
     box-shadow: 0 0 2px black;
 }
+
 .options a{
     background-color:#e5e5e5;    ;
     margin-right: 10px;
@@ -159,10 +223,10 @@ footer{
     font-weight: bold;
 }
 .card-body{
-    background-color: #ffe9c8;
+    background-color: #ffffff;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    
+    /* background-image: url("Unlimite-png.webp"); */
 }
 .Link{
     color: #2C2C2C;
@@ -213,7 +277,7 @@ footer .fab:hover {
     transition: transform 0.3s ease;
 }
 .card-header {
-    background-color: #002348; /* Primary color for header */
+    background-color: #363065; /* Primary color for header */
     color: white;
     font-weight: bold;
     padding-bottom: 30px;
@@ -228,9 +292,9 @@ footer .fab:hover {
     font-size: 0.8em;
     padding: 5px 10px;
     border-radius: 15px;
-    position: absolute; /* Position the badge absolutely */
-    top: 10px; /* Distance from the top */
-    right: 10px; /* Distance from the right */
+    position: absolute;
+    right: -12px;
+    top: -13px;
 }
 
 .bg-success {
@@ -244,6 +308,7 @@ footer .fab:hover {
 /* Card Body Styling */
 .card-body {
     padding: 20px;
+    border: 3px solid;
 }
 
 .card-text {
@@ -266,4 +331,326 @@ footer .fab:hover {
     margin-top: 90px;
     margin-bottom: 90px;
 
+}
+    
+/* Define the fade-in animations */
+@keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Apply the animations to the respective elements */
+  .Login-img {
+    animation: fadeInLeft 1s ease-in-out forwards;
+  }
+  
+  .LoginCard {
+    animation: fadeInRight 1s ease-in-out forwards;
+  }
+
+  /* feedback */
+  .custom-card-big-shadow {
+    max-width: 320px;
+    position: relative;
+}
+
+.coloured-cards .custom-card {
+    margin-top: 30px;
+}
+
+.custom-card[data-radius="none"] {
+    border-radius: 0px;
+}
+.custom-card {
+    border-radius: 8px;
+    box-shadow: 0 2px 2px rgba(204, 197, 185, 0.5);
+    background-color: #FFFFFF;
+    color: #252422;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.custom-card[data-background="image"] .title, 
+.custom-card[data-background="image"] .stats, 
+.custom-card[data-background="image"] .category, 
+.custom-card[data-background="image"] .description, 
+.custom-card[data-background="image"] .content, 
+.custom-card[data-background="image"] .card-footer, 
+.custom-card[data-background="image"] small, 
+.custom-card[data-background="image"] .content a, 
+.custom-card[data-background="color"] .title, 
+.custom-card[data-background="color"] .stats, 
+.custom-card[data-background="color"] .category, 
+.custom-card[data-background="color"] .description, 
+.custom-card[data-background="color"] .content, 
+.custom-card[data-background="color"] .card-footer, 
+.custom-card[data-background="color"] small, 
+.custom-card[data-background="color"] .content a {
+    color: #FFFFFF;
+}
+.custom-card.custom-card-just-text .content {
+    padding: 50px 65px;
+    text-align: center;
+}
+.custom-card .content {
+    padding: 20px 20px 10px 20px;
+}
+.custom-card[data-color="blue"] .category {
+    color: #7a9e9f;
+}
+
+.custom-card .category, .custom-card .label {
+    font-size: 17px;
+    margin-bottom: 0px;
+}
+.custom-card-big-shadow:before {
+    background-image: url("http://static.tumblr.com/i21wc39/coTmrkw40/shadow.png");
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    bottom: -12%;
+    content: "";
+    display: block;
+    left: -12%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 0;
+}
+h4, .h4 {
+    font-size: 1.5em;
+    font-weight: 600;
+    line-height: 1.2em;
+}
+h6, .h6 {
+    font-size: 0.9em;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.custom-card .description {
+    font-size: 16px;
+    color: #66615b;
+}
+.content-card{
+    margin-top:30px;    
+}
+a:hover, a:focus {
+    text-decoration: none;
+}
+
+/*======== COLORS ===========*/
+.custom-card[data-color="blue"] {
+    background: #b8d8d8;
+}
+.custom-card[data-color="blue"] .description {
+    color: #506568;
+}
+
+.custom-card[data-color="green"] {
+    background: #d5e5a3;
+}
+.custom-card[data-color="green"] .description {
+    color: #60773d;
+}
+.custom-card[data-color="green"] .category {
+    color: #92ac56;
+}
+
+.custom-card[data-color="yellow"] {
+    background: #ffe28c;
+}
+.custom-card[data-color="yellow"] .description {
+    color: #b25825;
+}
+.custom-card[data-color="yellow"] .category {
+    color: #d88715;
+}
+/* paperpin*/
+.paperPin {
+    position: absolute;
+    right: -25px;
+    top: -20px;
+}
+@media (max-width: 992px) {
+    .custom-card.custom-card-just-text .content {
+        padding: 25px;
+    }
+    .navbar .container-fluid .collapse .navbar-nav .nav-item a::after {
+    content: "";
+    position: absolute;
+    /* border:2px solid red ; */
+    left: 50%;
+    bottom: 1px;
+    width: 0%;
+    height: 3px;
+    background-color: rgb(18, 18, 18);
+    transition: all 0.5s ease-in-out;
+    transform: translateX(-50%);
+}
+.nav-link{
+    color: #000000;
+}
+.navbar .container-fluid .collapse .navbar-nav .nav-item a:hover {
+    color:#000000;
+    background-color: #ffd98e0f;
+    box-shadow: 0px 0px 0px rgb(163, 242, 242);
+    padding: 12px;
+    border: 0px solid;
+}
+
+.navbar .container-fluid .collapse .navbar-nav .nav-item a:hover::after {
+    width:100%;
+    background-color: rgb(255, 0, 0);
+}
+
+}
+@media (max-width: 576px) {
+    .custom-card.custom-card-just-text .content {
+        padding: 50px 65px;
+    }
+    .content-card {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+    }
+}
+/* CSS */
+.button-33 {
+    background-color: #c2fbd7;
+    border-radius: 100px;
+    box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+    color: green;
+    cursor: pointer;
+    display: inline-block;
+    font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button-33:hover {
+    box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
+    transform: scale(1.05) rotate(-1deg);
+  }
+
+  /* faqs */
+  
+.olcards,
+.olcards * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.olcards {
+  list-style: none;
+  counter-reset: cardCount;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  --cardsGap: 1rem;
+  gap: var(--cardsGap);
+  padding-bottom: var(--cardsGap);
+}
+.olcards li {
+  counter-increment: cardCount;
+  display: flex;
+  color: white;
+  --labelOffset: 1rem;
+  --arrowClipSize: 1.5rem;
+  margin-top: var(--labelOffset);
+}
+
+.olcards li::before {
+  content: counter(cardCount, decimal-leading-zero);
+  background: white;
+  color: var(--cardColor);
+  font-size: 2em;
+  font-weight: 700;
+  transform: translateY(calc(-1 * var(--labelOffset)));
+  margin-right: calc(-1 * var(--labelOffset));
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-inline: 0.5em;
+}
+
+.olcards li .content {
+  background-color: var(--cardColor);
+  --inlinePadding: 1em;
+  --boxPadding: 0.5em;
+  display: grid;
+  padding: var(--boxPadding) calc(var(--inlinePadding) + var(--arrowClipSize))
+    var(--boxPadding) calc(var(--inlinePadding) + var(--labelOffset));
+  grid-template-areas:
+    "icon title"
+    "icon text";
+  gap: 0.25em 1em;
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--arrowClipSize)) 0,
+    100% 50%,
+    calc(100% - var(--arrowClipSize)) 100%,
+    calc(100% - var(--arrowClipSize)) calc(100% + var(--cardsGap)),
+    0 calc(100% + var(--cardsGap))
+  );
+  position: relative;
+}
+.olcards li .content::before {
+  content: "";
+  position: absolute;
+  width: var(--labelOffset);
+  height: var(--labelOffset);
+  background: var(--cardColor);
+  left: 0;
+  bottom: 0;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  filter: brightness(0.75);
+}
+.olcards li .content::after {
+  content: "";
+  position: absolute;
+  height: var(--cardsGap);
+  width: var(--cardsGap);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.25), transparent 50%);
+  left: 0;
+  top: 100%;
+}
+.olcards li .icon {
+  grid-area: icon;
+  align-self: center;
+  font-size: 2em;
+}
+.olcards li .content .title {
+  grid-area: title;
+  font-size: 1.25em;
+  /* font-weight: 700; */
+}
+.olcards li .content .text {
+  grid-area: text;
 }

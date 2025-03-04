@@ -7,13 +7,76 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="Assets/CSS/Style.css">
-    
+    <style>
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            border: none;
+            position: relative;
+            margin-bottom: 30px;
+            box-shadow: 0 0.46875rem 2.1875rem rgba(90,97,105,0.1), 0 0.9375rem 1.40625rem rgba(90,97,105,0.1), 0 0.25rem 0.53125rem rgba(90,97,105,0.12), 0 0.125rem 0.1875rem rgba(90,97,105,0.1);
+        }
+        .l-bg-cherry {
+            background: linear-gradient(to right, #493240, #f09) !important;
+            color: #fff;
+        }
+
+        .l-bg-blue-dark {
+            background: linear-gradient(to right, #373b44, #4286f4) !important;
+            color: #fff;
+        }
+
+        .l-bg-green-dark {
+            background: linear-gradient(to right, #0a504a, #38ef7d) !important;
+            color: #fff;
+        }
+
+        .l-bg-orange-dark {
+            background: linear-gradient(to right, #a86008, #ffba56) !important;
+            color: #fff;
+        }
+
+        .card .card-statistic-3 .card-icon-large .fas, .card .card-statistic-3 .card-icon-large .far, .card .card-statistic-3 .card-icon-large .fab, .card .card-statistic-3 .card-icon-large .fal {
+            font-size: 110px;
+        }
+
+        .card .card-statistic-3 .card-icon {
+            text-align: center;
+            line-height: 50px;
+            margin-left: 15px;
+            color: #000;
+            position: absolute;
+            right: 1px;
+            top: 20px;
+            opacity: 0.1;
+        }
+
+        .l-bg-cyan {
+            background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
+            color: #fff;
+        }
+
+        .l-bg-green {
+            background: linear-gradient(135deg, #23bdb8 0%, #43e794 100%) !important;
+            color: #fff;
+        }
+
+        .l-bg-orange {
+            background: linear-gradient(to right, #f9900e, #ffba56) !important;
+            color: #fff;
+        }
+
+        .l-bg-cyan {
+            background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
                 <div class="position-sticky pt-3">
                     <!-- Close Button for Small Screens -->
                     <div class="d-flex justify-content-end d-md-none">
@@ -22,7 +85,7 @@
                     <h4>Admin Dashboard</h4>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="Home.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                            <a class="nav-link" href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="planEnd.html"><i class="fas fa-users"></i> User Management</a>
@@ -34,7 +97,7 @@
                             <a class="nav-link" href="userHistory.html"><i class="fas fa-history"></i> User History</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fas fa-cog"></i> Settings</a>
+                            <a class="nav-link" href="setting.html"><i class="fas fa-cog"></i> Settings</a>
                         </li>
                     </ul>
                 </div>
@@ -50,28 +113,98 @@
                 </div>
 
                 <!-- Cards Section -->
-                <div class="row mb-4">
-                    <div class="col-md-4">
-                        <div class="card text-white bg-primary">
-                            <div class="card-body">
-                                <h5 class="card-title"><i class="fas fa-wallet"></i> Total Recharges</h5>
-                                <p class="card-text" id="totalRecharges">0</p>
+                <div class="container">
+                    <div class="row ">
+                        <div class="col-xl-4 col-lg-4 col-md-6">
+                            <div class="card l-bg-cherry">
+                                <div class="card-statistic-3 p-4">
+                                    <div class="card-icon card-icon-large"><i class="fas fa-shopping-cart"></i></div>
+                                    <div class="mb-4">
+                                        <h5 class="card-title mb-0">New Orders</h5>
+                                    </div>
+                                    <div class="row align-items-center mb-2 d-flex">
+                                        <div class="col-8">
+                                            <h2 class="d-flex align-items-center mb-0">
+                                                3,243
+                                            </h2>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <span>12.5% <i class="fa fa-arrow-up"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                        <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card text-white bg-success">
-                            <div class="card-body">
-                                <h5 class="card-title"><i class="fas fa-inr"></i> Total Revenue</h5>
-                                <p class="card-text" id="totalRevenue">₹0</p>
+                        <div class="col-xl-4 col-lg-4 col-md-6">
+                            <div class="card l-bg-blue-dark">
+                                <div class="card-statistic-3 p-4">
+                                    <div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>
+                                    <div class="mb-4">
+                                        <h5 class="card-title mb-0">Suscriber</h5>
+                                    </div>
+                                    <div class="row align-items-center mb-2 d-flex">
+                                        <div class="col-8">
+                                            <h2 class="d-flex align-items-center mb-0">
+                                                15.07k
+                                            </h2>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <span>9.23% <i class="fa fa-arrow-up"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                        <div class="progress-bar l-bg-green" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card text-white bg-warning">
-                            <div class="card-body">
-                                <h5 class="card-title"><i class="fas fa-users"></i> Active Users</h5>
-                                <p class="card-text" id="activeUsers">0</p>
+                        <div class="col-xl-4 col-lg-4 col-md-6">
+                            <div class="card l-bg-green-dark">
+                                <div class="card-statistic-3 p-4">
+                                    <div class="card-icon card-icon-large"><i class="fas fa-ticket-alt"></i></div>
+                                    <div class="mb-4">
+                                        <h5 class="card-title mb-0">Total Recharge</h5>
+                                    </div>
+                                    <div class="row align-items-center mb-2 d-flex">
+                                        <div class="col-8">
+                                            <h2 class="d-flex align-items-center mb-0">
+                                                578
+                                            </h2>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <span>10% <i class="fa fa-arrow-up"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                        <div class="progress-bar l-bg-orange" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6">
+                            <div class="card l-bg-orange-dark">
+                                <div class="card-statistic-3 p-4">
+                                    <div class="card-icon card-icon-large"><i class="fas fa-dollar-sign"></i></div>
+                                    <div class="mb-4">
+                                        <h5 class="card-title mb-0">Revenue Today</h5>
+                                    </div>
+                                    <div class="row align-items-center mb-2 d-flex">
+                                        <div class="col-8">
+                                            <h2 class="d-flex align-items-center mb-0">
+                                                ₹11.61k
+                                            </h2>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <span>2.5% <i class="fa fa-arrow-up"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                        <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -81,7 +214,10 @@
                 <div class="recent-activity mb-4">
                     <h5><i class="fas fa-clock"></i> Recent Activity</h5>
                     <ul id="recentActivity">
-                        <li>No recent activity.</li>
+                        <li>New recharge request from John Doe.</li>
+                        <li>Recharge completed for Jane Smith.</li>
+                        <li>Recharge failed for Alice Johnson.</li>
+                          <li>New user registered: Bob Brown.</li>
                     </ul>
                 </div>
 
@@ -101,21 +237,21 @@
                             <tr>
                                 <td>John Doe</td>
                                 <td>9876543210</td>
-                                <td>₹10</td>
+                                <td>₹124</td>
                                 <td><span class="badge bg-success">Completed</span></td>
                                 <td>2023-10-01</td>
                             </tr>
                             <tr>
                                 <td>Jane Smith</td>
                                 <td>9123456789</td>
-                                <td>₹20</td>
+                                <td>₹299</td>
                                 <td><span class="badge bg-warning">Pending</span></td>
                                 <td>2023-10-02</td>
                             </tr>
                             <tr>
                                 <td>Alice Johnson</td>
                                 <td>9988776655</td>
-                                <td>₹15</td>
+                                <td>₹156</td>
                                 <td><span class="badge bg-danger">Failed</span></td>
                                 <td>2023-10-03</td>
                             </tr>
@@ -126,23 +262,6 @@
         </div>
     </div>
     <footer></footer>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Update card data
-            document.getElementById("totalRecharges").innerText = "1200";
-            document.getElementById("totalRevenue").innerText = "₹25,000";
-            document.getElementById("activeUsers").innerText = "350";
-
-            // Update recent activity
-            const recentActivity = [
-                "New recharge request from John Doe.",
-                "Recharge completed for Jane Smith.",
-                "Recharge failed for Alice Johnson.",
-                "New user registered: Bob Brown."
-            ];
-            const activityList = document.getElementById("recentActivity");
-            activityList.innerHTML = recentActivity.map(activity => `<li>${activity}</li>`).join("");
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

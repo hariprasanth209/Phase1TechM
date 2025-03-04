@@ -127,7 +127,7 @@
     <div class="col-md-6 col-12 mt-3 mb-5">
       <div class="card LoginCard shadow-sm animate__animated animate__fadeInRight">
         <div class="card-body d-flex flex-column align-items-center p-4" style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
-          <label class="h3 mb-3">Recharge Now..!</label>
+          <label class="h3 mb-3 ">Recharge Now..!</label>
           <input type="tel" id="guestMobile" class="form-control text-center mb-2 w-75" inputmode="numeric"
             oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="10"
             placeholder="Mobile Number" required>
@@ -141,7 +141,7 @@
         <!-- Plans -->
          <div class="container-fluid plan ">
           <div class="container">
-            <h3 class="h3 text-center  p-5">Recommended</h3>
+            <h3 class="h3 text-center  p-5 ">Recommended</h3>
             <div class="row g-4 mb-5" id="planContainer">
               <!-- card will Display here -->
             </div>
@@ -152,40 +152,96 @@
 
         <!-- OffCanvas -->
         <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" style="height: 50vh; width: 400px; margin: 0 auto; border-top-left-radius: 15px; border-top-right-radius: 15px;">
-          <div class="offcanvas-header" style="background-color: #f8f9fa; border-bottom: 1px solid #dee2e6;">
+          <div class="offcanvas-header" style="background-color: #ffdc13; border-bottom: 1px solid #dee2e6;">
             <h5 class="offcanvas-title" id="offcanvasBottomLabel" style="font-size: 1.5rem; font-weight: bold; color: #333;">Plan Details</h5>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
-          <div class="offcanvas-body" id="offcanvasBody" style="padding: 20px; font-size: 1rem; color: #555;">
+          <div class="offcanvas-body" id="offcanvasBody" style="padding: 30px; font-size: 1rem; color: #ffffff;">
             <!-- Plan details will be dynamically inserted here -->
           </div>
         </div>
         
-        <!-- trail -->
-        <div class="container newSim">
-          <div class="row align-items-center">
-              <!-- Left Part -->
-              <div class="col-md-6">
-                  <h3>By new sim in MobiComm?</h3>
-                  <p>Get the latest SIM card from MobiComm and enjoy seamless connectivity with high-speed internet and crystal-clear calls. Stay connected wherever you go!</p>
-              </div>
-              <!-- Right Part -->
-              <div class="col-md-6 text-center">
-                  <div class="d-grid gap-3">
-                      <!-- Buy Sim Card Button -->
-                      <a type="button" href="orderSim.html" class="btn btn-3d-press w-50">
-                          <img src="Assets/Images/sim.png" alt="Sim Card" style="width: 30px; height: 30px; margin-right: 10px;">
-                          <p>Buy Sim Card</p>
-                      </a>
-                      <!-- Port Sim Card Button -->
-                      <button type="button" class="btn btn-3d-press w-50">
-                          <img src="Assets/Images/sim-card.png" alt="Two Sim Cards" style="width: 30px; height: 30px; margin-right: 10px;">
-                          <p>Port Sim Card</p>
-                      </button>
-                  </div>
-              </div>
+        <!-- Buy SIM -->
+        <div class="container">
+          <div class="container newSim">
+            <div class="row align-items-center">
+                <!-- Left Part -->
+                <div class="col-md-6">
+                    <h3>By new sim in MobiComm?</h3>
+                    <p>Get the latest SIM card from MobiComm and enjoy seamless connectivity with high-speed internet and crystal-clear calls. Stay connected wherever you go!</p>
+                </div>
+                <!-- Right Part -->
+                <div class="col-md-6 text-center">
+                    <div class="d-grid gap-3">
+                        <!-- Buy Sim Card Button -->
+                        <a type="button" href="orderSim.html" class="btn btn-3d-press w-50">
+                            <img src="Assets/Images/sim.png" alt="Sim Card" style="width: 30px; height: 30px; margin-right: 10px;">
+                            <p>Buy Sim Card</p>
+                        </a>
+                        <!-- Port Sim Card Button -->
+                        <a type="button" href="portSim.html" class="btn btn-3d-press w-50">
+                            <img src="Assets/Images/sim-card.png" alt="Two Sim Cards" style="width: 30px; height: 30px; margin-right: 10px;">
+                            <p>Port Sim Card</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
           </div>
+        </div>
+
+      <!-- feedback -->
+       <div class="container">
+        <h3 class="text-center">Feedback</h3>
+      <div class="container bootstrap snippets bootdeys">
+        <div class="row">
+          <!-- Blue Card -->
+          <div class="col-md-4 col-sm-6 content-card">
+            <div class="custom-card-big-shadow">
+              
+              <div class="custom-card custom-card-just-text" data-background="color" data-color="blue" data-radius="none"><img src="Assets/Images/paperPin.png" alt="" class="paperPin">
+                <div class="content">
+                  <h6 class="category">Tom Cruise</h6><hr style="color: rgb(0, 81, 255);">
+                  <h4 class="title"><a href="#" class="text-decoration-none">Mobicomm Recharge</a></h4>
+                  <p class="description">
+                    Mobicomm offers seamless mobile recharge services with instant activation. Enjoy uninterrupted connectivity and fast network speeds.
+                  </p>
+                </div>
+              </div> <!-- end custom-card -->
+            </div>
+          </div>
+      
+          <!-- Green Card -->
+          <div class="col-md-4 col-sm-6 content-card">
+            <div class="custom-card-big-shadow">
+              <div class="custom-card custom-card-just-text" data-background="color" data-color="green" data-radius="none"><img src="Assets/Images/paperPin.png" alt="" class="paperPin">
+                <div class="content">
+                  <h6 class="category">Christopher Nolan</h6><hr style="color: green;">
+                  <h4 class="title"><a href="#" class="text-decoration-none">Excellent Services</a></h4>
+                  <p class="description">
+                    Users praise Mobicomm for its reliable services, quick recharge options, and excellent customer support. Highly recommended!
+                  </p>
+                </div>
+              </div> <!-- end custom-card -->
+            </div>
+          </div>
+      
+          <!-- Yellow Card -->
+          <div class="col-md-4 col-sm-6 content-card">
+            <div class="custom-card-big-shadow">
+              <div class="custom-card custom-card-just-text" data-background="color" data-color="yellow" data-radius="none"><img src="Assets/Images/paperPin.png" alt="" class="paperPin">
+                <div class="content">
+                  <h6 class="category">Robert Downey Jr</h6><hr style="color: black;">
+                  <h4 class="title"><a href="#" class="text-decoration-none">Fast Network</a></h4>
+                  <p class="description">
+                    Experience blazing-fast internet speeds with Mobicomm's robust network. Perfect for streaming, gaming, and staying connected.
+                  </p>
+                </div>
+              </div> <!-- end custom-card -->
+            </div>
+          </div>
+        </div>
       </div>
+       </div>
 
         <!-- FAQS -->
         <section class="container" id="FAQS" style="margin-top: 90px;">
@@ -441,7 +497,7 @@ document.getElementById("rechargeButton").addEventListener("click", verifyMobile
 
         document.addEventListener("DOMContentLoaded", function () {
           // Fetch JSON data
-          fetch('http://localhost:3001/plans')
+          fetch('http://localhost:3000/plans')
             .then((response) => {
               if (!response.ok) {
                 throw new Error("Failed to fetch plans.");
@@ -460,11 +516,11 @@ document.getElementById("rechargeButton").addEventListener("click", verifyMobile
               // Generate plan cards for recommended plans
               recommendedPlans.forEach((plan) => {
               // Determine if the card should have a badge
-              const badge = plan.categories.includes("Unlimite") ? `<span class="badge bg-success">Unlimited</span>` : 
-                            plan.categories.includes("New") ? `<span class="badge bg-primary">New</span>` : "";
+              const badge = plan.categories.includes("Unlimite") ? `<span class="badge bg-danger p-2">Unlimited</span>` : 
+                            plan.categories.includes("New") ? `<span class="badge bg-info" style="color:black;">New</span>` : "";
 
               const cardHtml = `
-                <div class="col-md-4 my-3 contain">
+                <div class="col-md-4 my-3 contain fade-up">
                   <div class="card h-100 me-3">
                     <!-- Card Header with Background Color -->
                     <div class="card-header  text-white">
@@ -476,7 +532,7 @@ document.getElementById("rechargeButton").addEventListener("click", verifyMobile
                       <p class="card-text" id="planData"><i class="fas fa-database me-2"></i>${plan.data}</p>
                       ${plan.sms ? `<p class="card-text"><i class="fas fa-comment-alt me-2"></i>${plan.sms}</p>` : ""}
                       <p class="card-text mb-5" id="validDays"><i class="fas fa-calendar-alt me-2"></i>${plan.validity}</p>
-                      <a href="Payment Page.html" class="btn-3d-press mt-auto align-self-center text-decoration-none" onclick="savePlanDetails(this)">Purchase</a>
+                      <a href="Payment Page.html?id=${plan.id}" class="btn-3d-press mt-auto align-self-center text-decoration-none">Purchase</a>
                       <a class="Link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom" onclick="showPlanDetails(${plan.id})">more</a>
                     </div>
                   </div>
@@ -493,21 +549,9 @@ document.getElementById("rechargeButton").addEventListener("click", verifyMobile
             });
         });
 
-        // Save plan details to localStorage
-        function savePlanDetails(button) {
-          const card = button.closest(".card-body");
-          const planPrice = card.querySelector("#planPrice").innerText;
-          const planData = card.querySelector("#planData").innerText;
-          const validDays = card.querySelector("#validDays").innerText;
-
-          localStorage.setItem("planPrice", planPrice);
-          localStorage.setItem("planData", planData);
-          localStorage.setItem("validDays", validDays);
-        }
-
         // Show plan details in offcanvas
         function showPlanDetails(planId) {
-        fetch(`http://localhost:3001/plans/${planId}`)
+        fetch(`http://localhost:3000/plans/${planId}`)
           .then(response => response.json())
           .then(plan => {
             const offcanvasBody = document.getElementById("offcanvasBody");

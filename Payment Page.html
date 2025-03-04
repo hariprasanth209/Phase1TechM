@@ -1,325 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="Assets/CSS/style.css">
-    <style>
-      .paymentIcon{
-        width: 50px; height: 50px;
-      }
-     @media (max-width: 475px) {
-      .paymentIcon{
-        height: 30px;
-        width: 30px;
-      }
-     }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Page</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-
-    </style>
-  </head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="Assets/CSS/payy.css">
 <body>
-    <header>
+  <div class="payment-container">
+    <!-- Selected Plan Section -->
+    <div class="selected-plan">
+    <h3 class="mb-3">Selected Plan </h3>
+    <p><strong>Price: </strong><span id="planPrice"></span></p>
+    <p><strong>Data: </strong><span id="planData"></span></p>
+    <p><strong>Validity: </strong><span id="validDays"></span></p>
+    <p><strong>Phone: </strong><span id="phone"></span></p>
+    <div class="icon-container">
+        <img src="Assets/CSS/pngaaa.com-5863036.png" alt="ji">
+    </div>
+    </div>
+
+    <!-- Payment Options Grid -->
+    <h4 class="mb-4 text-center ">Choose Payment Method</h4>
+    <div class="rad-container">
+        <label class="rad-label">
+            <input type="radio" class="rad-input" name="rad" onclick="showForm('upiForm'); changeBackground('OIP.jpg')" checked>
+            <div class="rad-design"></div>
+            <div class="rad-text">UPI</div>
+        </label>
     
-        <!-- Show plans -->
-        <div class="container-fluid p-4" style="background-image: url('Assets/Images/PaymentBackground.jpg'); ">
-          <div class="container">
-          <div class="container my-5">
-            <div class="row justify-content-center">
-              <div class="col-md-6">
-                <div class="card w-100 LoginCard rounded-5 shadow">
-                  <div class="card-body d-flex flex-column align-items-center">
-                    <h3 class="m-3">Selected Plan</h3>
-                    <p><strong>Price: </strong><span id="planPrice"></span></p>
-                    <p><strong>Data: </strong><span id="planData"></span></p>
-                    <p><strong>Validity: </strong><span id="validDays"></span></p>
-                    <p><strong>Phone: </strong><span id="phone"></span></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <label class="rad-label">
+            <input type="radio" class="rad-input" name="rad" onclick="showForm('netbankingForm'); changeBackground('netbank.jpg')">
+            <div class="rad-design"></div>
+            <div class="rad-text">Net Banking</div>
+        </label>
+    
+        <label class="rad-label">
+            <input type="radio" class="rad-input" name="rad" onclick="showForm('cardForm'); changeBackground('creditcard.jpg')">
+            <div class="rad-design"></div>
+            <div class="rad-text">Card</div>
+        </label>
+    
+        <label class="rad-label">
+            <input type="radio" class="rad-input" name="rad" onclick="showForm('walletForm'); changeBackground('Wallet.jpg')">
+            <div class="rad-design"></div>
+            <div class="rad-text">Wallet</div>
+        </label>
+    </div>
+    
+
+    <!-- Payment Forms -->
+    <div class="payment-form" id="upiForm">
+      <h5>UPI Payment</h5>
+      <div class="mb-3">
+        <label for="upiId" class="form-label">Enter UPI ID</label>
+        <input type="text" class="form-control" id="upiId" placeholder="example@upi">
+      </div>
+      <button class="button-33" onclick="savePaymentDetails('UPI')">Submit</button>
+    </div>
+
+    <div class="payment-form" id="netbankingForm">
+      <h5>Net Banking</h5>
+      <div class="mb-3">
+        <label for="accountNumber" class="form-label">Enter Account Number</label>
+        <input type="text" class="form-control" id="accountNumber" placeholder="1234567890">
+      </div>
+      <button class="button-33" onclick="savePaymentDetails('Net Banking')">Submit</button>
+    </div>
+
+    <div class="payment-form" id="cardForm">
+      <h5>Credit/Debit Card</h5>
+      <div class="mb-3">
+        <label for="cardNumber" class="form-label">Card Number</label>
+        <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456">
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="expiryDate" class="form-label">Expiry Date (MM/YY)</label>
+          <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY">
         </div>
+        <div class="col-md-6 mb-3">
+          <label for="cvv" class="form-label">CVV</label>
+          <input type="text" class="form-control" id="cvv" placeholder="123">
         </div>
-<div class="container">
-          <h1 class="text-center mt-5">Payment</h1>
-          <!-- Payments options -->
-          <div class="container d-flex justify-content-center">
-            
-              <div class="col-lg-8 col-12 mx-auto">
-                <div class="accordion accordion-flush w-100 p-1" id="accordionFlushExample">
-                  <div class="shadow accordion-item m-3">
-                    <h2 class="accordion-header active" id="flush-headingOne">
-                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                        UPI
-                      </button>
-                    </h2>
-                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                      <div class="accordion-body text-center">
-                        <div class="d-flex justify-content-between">
-                          <ul class="list-unstyled d-flex justify-content-between w-100">
-                            <li class="upi-items active d-flex flex-column p-3">
-                              <a href="#" class="d-flex flex-column align-items-center text-decoration-none">
-                                <img src="Assets/Images/google-pay-logo.svg" alt="Google Pay Logo" class="paymentIcon">
-                                <p class="mt-2">Google Pay</p>
-                              </a>
-                            </li>
-                            <li class="upi-items d-flex flex-column p-3">
-                              <a href="#" class="d-flex flex-column align-items-center text-decoration-none">
-                                <img src="Assets/Images/Paytm-logo.png" alt="Paytm Logo" class="paymentIcon">
-                                <p class="mt-2">Paytm</p>
-                              </a>
-                            </li>
-                            <li class="upi-items d-flex flex-column p-3">
-                              <a href="#" class="d-flex flex-column align-items-center text-decoration-none">
-                                <img src="Assets/Images/PhonePe-logo.png" alt="PhonePe Logo" class="paymentIcon">
-                                <p class="mt-2">PhonePe</p>
-                              </a>
-                            </li>
-                            <li class="upi-items d-flex flex-column p-3">
-                              <a href="#" class="d-flex flex-column align-items-center text-decoration-none">
-                                <img src="Assets/Images/google-pay-logo.svg" alt="Google Pay Logo" class="paymentIcon" >
-                                <p class="mt-2">Google Pay</p>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                        <form action="">
-                          <input type="text" placeholder="UPI ID" class="form-control mb-2" id="payID">
-                          <a href="#" class="btn btn-dark" onclick="savePaymentDetails()">Make Payment</a>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-          
-                  <div class="shadow accordion-item m-3">
-                    <h2 class="accordion-header" id="flush-headingTwo">
-                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                        Net Banking
-                      </button>
-                    </h2>
-                    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                      <div class="accordion-body">
-                        <div class="d-flex justify-content-between">
-                          <ul class="list-unstyled d-flex justify-content-between w-100">
-                            <li class="upi-items active d-flex flex-column p-3">
-                              <a href="#" class="d-flex flex-column align-items-center text-decoration-none">
-                                <img src="Assets/Images/hdfc-logo.png" alt="HDFC Logo" class="paymentIcon">
-                                <p class="mt-2">HDFC</p>
-                              </a>
-                            </li>
-                            <li class="upi-items d-flex flex-column p-3">
-                              <a href="#" class="d-flex flex-column align-items-center text-decoration-none">
-                                <img src="Assets/Images/icici-logo.jpg" alt="ICICI Logo"  class="paymentIcon">
-                                <p class="mt-2">ICICI</p>
-                              </a>
-                            </li>
-                            <li class="d-flex flex-column p-3">
-                              <a href="#" class="upi-items d-flex flex-column align-items-center text-decoration-none">
-                                <img src="Assets/Images/Axis-Bank-PNG-Logo.png" alt="Axis Logo"  class="paymentIcon">
-                                <p class="mt-2">Axis</p>
-                              </a>
-                            </li>
-                            <li class="upi-items d-flex flex-column p-3">
-                              <a href="#" class="d-flex flex-column align-items-center text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <img src="Assets/Images/More-Icon.png" alt="More Banks" class="paymentIcon">
-                                <p class="mt-2">More</p>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                        <form action="">
-                          <input type="text" placeholder="UPI ID" class="form-control mb-2" id="payID">
-                          <a href="#" class="btn btn-dark" onclick="savePaymentDetails()">Make Payment</a>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-          
-                  <div class="accordion-item shadow m-3">
-                    <h2 class="accordion-header" id="flush-headingThree">
-                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                        Credit/Debit Card
-                      </button>
-                    </h2>
-                    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                      <div class="accordion-body">
-                        <form action="">
-                          <input type="tel" inputmode="numeric" placeholder="Enter Card Number" class="form-control mb-2" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="16">
-                          <div class="row g-2">
-                            <div class="col-lg-6">
-                              <input type="date" placeholder="Valid Date" class="form-control">
-                            </div>
-                            <div class="col-lg-6">
-                              <input type="text" placeholder="CVV" class="form-control">
-                            </div>
-                          </div>
-                          <a href="#" class="btn btn-dark mt-3">Make Payment</a>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-          
-                </div>
-              
-            </div>
-          </div>
-          
+      </div>
+      <button class="button-33" onclick="savePaymentDetails('Credit/Debit Card')">Submit</button>
+    </div>
 
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Select Bank</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <input class="form-control shadow-lg mb-3" type="search" placeholder="Search" aria-label="Search">
-                  <div class="list-group">
-                    <div class="list-group-item d-flex align-items-center">
-                      <img src="Assets/Images/SBI-logo.jpeg" alt="SBI" class="img-fluid me-2" width="40">
-                      <p class="mb-0">SBI</p>
-                    </div>
-                    <div class="list-group-item d-flex align-items-center">
-                      <img src="Assets/Images/YesBank-logo.png" alt="Yes Bank" class="img-fluid me-2" width="40">
-                      <p class="mb-0">Yes Bank</p>
-                    </div>
-                    <div class="list-group-item d-flex align-items-center">
-                      <img src="Assets/Images/IndianBank-logo.png" alt="Indian Bank" class="img-fluid me-2" width="40">
-                      <p class="mb-0">Indian Bank</p>
-                    </div>
-                    <div class="list-group-item d-flex align-items-center">
-                      <img src="Assets/Images/KOTAKBANK-logo.png" alt="Kotak Bank" class="img-fluid me-2" width="40">
-                      <p class="mb-0">Kotak Bank</p>
-                    </div>
-                    <div class="list-group-item d-flex align-items-center">
-                      <img src="Assets/Images/CanaraBank-logo.jpg" alt="Canara Bank" class="img-fluid me-2" width="40">
-                      <p class="mb-0">Canara Bank</p>
-                    </div>
-                    <div class="list-group-item d-flex align-items-center">
-                      <img src="Assets/Images/South-Indian-Bank-logo.png" alt="South Indian Bank" class="img-fluid me-2" width="40">
-                      <p class="mb-0">South Indian Bank</p>
-                    </div>
-                    <div class="list-group-item d-flex align-items-center">
-                      <img src="Assets/Images/indian-overseas-bank-logo.png" alt="Indian Overseas Bank" class="img-fluid me-2" width="40">
-                      <p class="mb-0">Indian Overseas Bank</p>
-                    </div>
-                    
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Pay</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <!-- FAQ -->
-          <div class="container-fluid m-5 pb-5" id="FAQS">
-            <h1 class="display-5 text-center">FAQS</h1>
+    <div class="payment-form" id="walletForm">
+      <h5>Wallet Payment</h5>
+      <div class="mb-3">
+        <label for="walletId" class="form-label">Enter Wallet ID</label>
+        <input type="text" class="form-control" id="walletId" placeholder="Wallet ID">
+      </div>
+      <button class="button-33" onclick="savePaymentDetails('Wallet')">Submit</button>
+    </div>
+  </div>
+<!-- FAQ Section -->
+<div class="container-fluid py-5" id="FAQS">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8 bg-light rounded-4 p-3"> <!-- Adjust width for responsiveness -->
+            <h1 class="display-5 text-center fw-bold text-dark mb-4">Frequently Asked Questions</h1>
             <div class="accordion accordion-flush" id="accordionFlushExample2">
                 <div class="accordion-item">
-                  <h2 class="accordion-header" id="flush-headingFour">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                      Q1: What payment methods are accepted?
-                    </button>
-                  </h2>
-                  <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample2">
-                    <div class="accordion-body">We accept payments via debit/credit cards, UPI, net banking</div>
-                  </div>
+                    <h2 class="accordion-header" id="flush-headingFour">
+                        <button class="accordion-button collapsed faq-question" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                            <i class="fa-solid fa-circle-question me-2"></i> Q1: What payment methods are accepted?
+                        </button>
+                    </h2>
+                    <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample2">
+                        <div class="accordion-body faq-answer">
+                            We accept payments via <strong>debit/credit cards, UPI, and net banking.</strong>
+                        </div>
+                    </div>
                 </div>
                 <div class="accordion-item">
-                  <h2 class="accordion-header" id="flush-headingFive">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
-                      Q2: My recharge failed, but the amount was deducted. What should I do?
-                    </button>
-                  </h2>
-                  <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample2">
-                    <div class="accordion-body">If your recharge fails but the amount is deducted, it will be automatically refunded within 2-5 working days. If not, please contact our support team.</div>
-                  </div>
+                    <h2 class="accordion-header" id="flush-headingFive">
+                        <button class="accordion-button collapsed faq-question" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                            <i class="fa-solid fa-circle-question me-2"></i> Q2: My recharge failed, but the amount was deducted. What should I do?
+                        </button>
+                    </h2>
+                    <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample2">
+                        <div class="accordion-body faq-answer">
+                            If your recharge fails but the amount is deducted, it will be <strong>automatically refunded within 2-5 working days.</strong> If not, please contact our support team.
+                        </div>
+                    </div>
                 </div>
                 <div class="accordion-item">
-                  <h2 class="accordion-header" id="flush-headingSix">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
-                      Q3: Can I cancel a recharge after payment?
-                    </button>
-                  </h2>
-                  <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample2">
-                    <div class="accordion-body">No, once a recharge is processed, it cannot be canceled or refunded.</div>
-                  </div>
+                    <h2 class="accordion-header" id="flush-headingSix">
+                        <button class="accordion-button collapsed faq-question" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
+                            <i class="fa-solid fa-circle-question me-2"></i> Q3: Can I cancel a recharge after payment?
+                        </button>
+                    </h2>
+                    <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample2">
+                        <div class="accordion-body faq-answer">
+                            No, once a recharge is processed, <strong>it cannot be canceled or refunded.</strong>
+                        </div>
+                    </div>
                 </div>
-              </div>
-          </div>
+            </div>
+        </div>
     </div>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-  // Retrieve the logged-in and guest mobile numbers from localStorage
-  const loggedInMobile = localStorage.getItem("loggedInMobile");
-  const guestMobile = localStorage.getItem("guestMobile");
-  const phone = guestMobile || loggedInMobile;
-  const phoneElement = document.getElementById("phone");
-  if (phone) {
-    phoneElement.innerText = phone;
-  } else {
-    phoneElement.innerText = "No mobile number found.";
-  }
+</div>
+
+
+<!-- FontAwesome for icons -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+
+  <!-- Bootstrap JS and Popper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <!-- Custom JS -->
+  <script>
+    // Automatically show the UPI form on page load
+    window.onload = function () {
+      showForm('upiForm');
+    };
+
+    function showForm(formId) {
+      // Hide all forms
+      document.querySelectorAll('.payment-form').forEach(form => {
+        form.style.display = 'none';
+      });
+
+      // Show the selected form
+      const selectedForm = document.getElementById(formId);
+      if (selectedForm) {
+        selectedForm.style.display = 'block';
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      // Retrieve the logged-in and guest mobile numbers from localStorage
+      const loggedInMobile = localStorage.getItem("loggedInMobile");
+      const guestMobile = localStorage.getItem("guestMobile");
+      const phone = guestMobile || loggedInMobile;
+      const phoneElement = document.getElementById("phone");
+      if (phone) {
+        phoneElement.innerText = phone;
+      } else {
+        phoneElement.innerText = "No mobile number found.";
+      }
+
+      // Get the plan ID from the URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const planId = urlParams.get('id');
+
+      if (planId) {
+        fetch(`http://localhost:3000/plans/${planId}`)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error("Plan not found");
+            }
+            return response.json();
+          })
+          .then(plan => {
+            // Display fetched plan details
+            document.getElementById("planPrice").innerText = `₹${plan.price}`;
+            document.getElementById("planData").innerText = plan.data;
+            document.getElementById("validDays").innerText = `${plan.validity} days`;
+
+            // Store plan details in localStorage for later use
+            localStorage.setItem("selectedPlan", JSON.stringify(plan));
+          })
+          .catch(error => console.error("Error fetching plan:", error));
+      } else {
+        console.error("No plan ID found in URL");
+      }
+    });
+
+    function savePaymentDetails(paymentMode) {
+      let paymentID;
+      if (paymentMode === "UPI") {
+        paymentID = document.getElementById("upiId").value.trim();
+      } else if (paymentMode === "Net Banking") {
+        paymentID = document.getElementById("accountNumber").value.trim();
+      } else if (paymentMode === "Credit/Debit Card") {
+        paymentID = document.getElementById("cardNumber").value.trim();
+      } else if (paymentMode === "Wallet") {
+        paymentID = document.getElementById("walletId").value.trim();
+      }
+
+      if (!paymentID) {
+        alert("Please enter a valid payment ID.");
+        return;
+      }
+
+      // Retrieve plan details from localStorage
+      const selectedPlan = JSON.parse(localStorage.getItem("selectedPlan"));
+      if (!selectedPlan) {
+        alert("Plan details are missing. Please select a plan again.");
+        return;
+      }
+
+      // Retrieve user phone number
+      const phone = localStorage.getItem("guestMobile") || localStorage.getItem("loggedInMobile") || "N/A";
+
+      const newEntry = {
+        planId: selectedPlan.id,
+        planPrice: selectedPlan.price,
+        planData: selectedPlan.data,
+        validDays: selectedPlan.validity,
+        phone: phone,
+        paymentMode: paymentMode,
+        payID: paymentID,
+        timestamp: new Date().toLocaleString()
+      };
+
+      // Send data to JSON Server
+      fetch("http://localhost:3000/payments", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newEntry),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Payment details saved to JSON Server:", data);
+          localStorage.removeItem("guestMobile");
+          localStorage.removeItem("selectedPlan");
+          window.location.href = "history.html";
+        })
+        .catch((error) => {
+          console.error("Error saving payment details:", error);
+          alert("Failed to save payment details. Please try again.");
+        });
+    }
+
+    // background image change
+    function changeBackground(imageName) {
+    // Select the background element
+    let bgElement = document.querySelector(".body-bg");
+
+    // If it doesn't exist, create it
+    if (!bgElement) {
+        bgElement = document.createElement("div");
+        bgElement.classList.add("body-bg");
+        document.body.prepend(bgElement);
+    }
+
+    // Change the background image dynamically
+    bgElement.style.backgroundImage = `url('Assets/Images/${imageName}')`;
+}
+
+// Ensure the default background is set when the page loads
+document.addEventListener("DOMContentLoaded", function () {
+    changeBackground('OIP.jpg'); // Default background for UPI
 });
 
-function savePaymentDetails() {
-  const payID = document.getElementById("payID").value.trim();
-  const planPrice = localStorage.getItem("planPrice");
-  const planData = localStorage.getItem("planData");
-  const validDays = localStorage.getItem("validDays");
-  const phoneElement = document.getElementById("phone");
-  const phone = phoneElement.innerText;
-
-  if (!payID) {
-    alert("Please enter your UPI ID before making the payment.");
-    return;
-  }
-  if (!planPrice || !planData || !validDays) {
-    alert("Plan details are missing. Please select a plan again.");
-    return;
-  }
-
-  const newEntry = {
-    planPrice: planPrice,
-    planData: planData,
-    validDays: validDays,
-    phone: phone, // Use the displayed phone number
-    payID: payID,
-    timestamp: new Date().toLocaleString() // Store purchase time
-  };
-
-  // Send data to JSON Server
-  fetch("http://localhost:3000/payments", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newEntry),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Payment details saved to JSON Server:", data);
-      localStorage.removeItem("guestMobile");
-      window.location.href = "history.html";
-    })
-    .catch((error) => {
-      console.error("Error saving payment details:", error);
-      alert("Failed to save payment details. Please try again.");
-    });
-}
-    </script>
-    
-    
-    <script src="Assets/JS/ShowDetails.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
+  </script>
+  <script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
 </body>
 </html>

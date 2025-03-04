@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Port Sim Page</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="Assets/CSS/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ff9900; padding: 4px;">
+    <div class="container">
+      <a class="navbar-brand" href="#">SIM Card Request</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#request">Port SIM</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#tracking">Track Order</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Port Sim</h1>
+  
+    <!-- Row for Form and Image -->
+    <div class="row" id="request">
+      <!-- Form Column (Left on large screens, bottom on small screens) -->
+      <div class="col-lg-6 order-lg-1 order-2">
+        <div class="bg-light p-4 rounded mb-4 shadow" >
+          <h2 class="mb-4 text-center">Enter Your Details</h2>
+          <form id="phoneForm">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="phoneNumber" class="form-label">Phone Number</label>
+              <input type="tel" class="form-control" id="phoneNumber" placeholder="Enter your phone number" required>
+            </div>
+            <div class="mb-3">
+              <label for="orderID" class="form-label">Order ID</label>
+              <input type="text" class="form-control" id="orderID" required>
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea class="form-control" id="description" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-ripple">Submit</button>
+          </form>
+        </div>
+      </div>
+  
+      <!-- Image Column (Right on large screens, top on small screens) -->
+      <div class="col-lg-6 order-lg-2 order-1 mb-4">
+        <img src="Assets/Images/online-world-animate.svg" alt="Placeholder Image" class="img-fluid w-100">
+      </div>
+    </div>
+  
+    <!-- Row for Tracing Order with Order ID -->
+    <div class="row justify-content-center mt-5" id="tracing">
+      <div class="col-lg-8">
+        <div class="bg-light p-4 rounded text-center shadow">
+          <h2 class="mb-4">Trace Your Order</h2>
+          <form id="orderForm" class="d-flex flex-column align-items-center">
+            <div class="mb-3 w-75">
+              <label for="orderID" class="form-label">Order ID</label>
+              <input type="text" class="form-control w-100" id="orderID" placeholder="Enter your Order ID" required>
+            </div>
+            <button type="submit" class="btn btn-ripple">Trace Order</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- footer -->
+  <footer class="bg-dark text-white py-4 mt-5">
+    <div class="container mt-5">
+      <div class="row text-center text-md-start">
+        <!-- Quick Links -->
+        <div class="col-md-3 mb-3">
+          <h5> <strong>Quick Links</strong></h5>
+          <ul class="list-unstyled ">
+            <li><a href="index.html" class="text-white text-decoration-none">Home</a></li>
+            <li><a href="plan_page.html" class="text-white text-decoration-none">View Plans</a></li>
+            <li><a href="#FAQS" class="text-white text-decoration-none">FAQS</a></li>
+            <li><a href="History.html" class="text-white text-decoration-none">History</a></li>
+            <li><a href="AboutUs.html" class="text-white text-decoration-none">About-us</a></li>
+          </ul>
+        </div>
+        
+        <!-- Contact Us -->
+        <div class="col-md-3 mb-3">
+          <h5> <strong>Contact Us</strong> </h5>
+          <p>Email: support@mobicomm.com</p>
+          <p>Phone: +123 456 7890</p>
+          <a href="orderSim.html" class="text-decoration-none" style="color: #dee2e6;">New SIM</a>
+        </div>
+        
+        <div class="col-md-3 mb-3">
+          <h5> <strong>Policy</strong> </h5>
+          <p>Privacy Policy</p>
+          <p>Terms & Conditions</p>
+          <p>Refunds Policy</p>
+        </div>
+
+        <!-- Follow Us -->
+        <div class="col-md-3 mb-3">
+          <h5> <strong>Follow Us</strong> </h5>
+          <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-white me-3"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-white me-3"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      
+      <!-- Copyright Row -->
+      <div class="row mt-3">
+        <div class="col text-center">
+          <p class="mb-0">&copy; 2025 MobiComm Industry Limited. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+    </footer>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+  <!-- Optional: Add your custom JS for form handling -->
+  <script>
+    document.getElementById('phoneForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const phoneNumber = document.getElementById('phoneNumber').value;
+      alert(`Phone Number Submitted: ${phoneNumber}`);
+      // Add your logic to handle the phone number submission
+    });
+
+    document.getElementById('orderForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const orderID = document.getElementById('orderID').value;
+      alert(`Order ID Submitted: ${orderID}`);
+      // Add your logic to handle the order tracing
+    });
+  </script>
+</body>
+</html>

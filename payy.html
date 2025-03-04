@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Page</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="Assets/CSS/payy.css">
+</head>
+<body>
+  <div class="payment-container">
+    <!-- Selected Plan Section -->
+    <div class="selected-plan">
+      <h3 class="mb-3">Selected Plan</h3>
+      <p><strong>Price: </strong><span id="planPrice">$10/month</span></p>
+      <p><strong>Data: </strong><span id="planData">10 GB</span></p>
+      <p><strong>Validity: </strong><span id="validDays">30 Days</span></p>
+      <p><strong>Phone: </strong><span id="phone">+1234567890</span></p>
+    </div>
+
+    <!-- Payment Options Grid -->
+    <h4 class="mb-4">Choose Payment Method</h4>
+    <div class="rad-container">
+      <label class="rad-label">
+        <input type="radio" class="rad-input" name="rad" onclick="showForm('upiForm')" checked>
+        <div class="rad-design"></div>
+        <div class="rad-text">UPI</div>
+      </label>
+
+      <label class="rad-label">
+        <input type="radio" class="rad-input" name="rad" onclick="showForm('netbankingForm')">
+        <div class="rad-design"></div>
+        <div class="rad-text">Net Banking</div>
+      </label>
+
+      <label class="rad-label">
+        <input type="radio" class="rad-input" name="rad" onclick="showForm('cardForm')">
+        <div class="rad-design"></div>
+        <div class="rad-text">Card</div>
+      </label>
+
+      <label class="rad-label">
+        <input type="radio" class="rad-input" name="rad" onclick="showForm('walletForm')">
+        <div class="rad-design"></div>
+        <div class="rad-text">Wallet</div>
+      </label>
+    </div>
+
+    <!-- Payment Forms -->
+    <div class="payment-form" id="upiForm">
+      <h5>UPI Payment</h5>
+      <div class="mb-3">
+        <label for="upiId" class="form-label">Enter UPI ID</label>
+        <input type="text" class="form-control" id="upiId" placeholder="example@upi">
+      </div>
+      <button class="btn btn-primary" onclick="savePaymentDetails('UPI')">Submit</button>
+    </div>
+
+    <div class="payment-form" id="netbankingForm">
+      <h5>Net Banking</h5>
+      <div class="mb-3">
+        <label for="accountNumber" class="form-label">Enter Account Number</label>
+        <input type="text" class="form-control" id="accountNumber" placeholder="1234567890">
+      </div>
+      <button class="btn btn-primary" onclick="savePaymentDetails('Net Banking')">Submit</button>
+    </div>
+
+    <div class="payment-form" id="cardForm">
+      <h5>Credit/Debit Card</h5>
+      <div class="mb-3">
+        <label for="cardNumber" class="form-label">Card Number</label>
+        <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456">
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="expiryDate" class="form-label">Expiry Date (MM/YY)</label>
+          <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="cvv" class="form-label">CVV</label>
+          <input type="text" class="form-control" id="cvv" placeholder="123">
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="savePaymentDetails('Credit/Debit Card')">Submit</button>
+    </div>
+
+    <div class="payment-form" id="walletForm">
+      <h5>Wallet Payment</h5>
+      <div class="mb-3">
+        <label for="walletId" class="form-label">Enter Wallet ID</label>
+        <input type="text" class="form-control" id="walletId" placeholder="Wallet ID">
+      </div>
+      <button class="btn btn-primary" onclick="savePaymentDetails('Wallet')">Submit</button>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and Popper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <!-- Custom JS -->
+  <script>
+    // Automatically show the UPI form on page load
+    window.onload = function () {
+      showForm('upiForm');
+    };
+
+    function showForm(formId) {
+      // Hide all forms
+      document.querySelectorAll('.payment-form').forEach(form => {
+        form.style.display = 'none';
+      });
+
+      // Show the selected form
+      const selectedForm = document.getElementById(formId);
+      if (selectedForm) {
+        selectedForm.style.display = 'block';
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      // Retrieve the logged-in and guest mobile numbers from localStorage
+      const loggedInMobile = localStorage.getItem("loggedInMobile");
+      const guestMobile = localStorage.getItem("guestMobile");
+      const phone = guestMobile || loggedInMobile;
+      const phoneElement = document.getElementById("phone");
+      if (phone) {
+        phoneElement.innerText = phone;
+      } else {
+        phoneElement.innerText = "No mobile number found.";
+      }
+
+      // Get the plan ID from the URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const planId = urlParams.get('id');
+
+      if (planId) {
+        fetch(`http://localhost:3001/plans/${planId}`)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error("Plan not found");
+            }
+            return response.json();
+          })
+          .then(plan => {
+            // Display fetched plan details
+            document.getElementById("planPrice").innerText = `₹${plan.price}`;
+            document.getElementById("planData").innerText = plan.data;
+            document.getElementById("validDays").innerText = `${plan.validity} days`;
+
+            // Store plan details in localStorage for later use
+            localStorage.setItem("selectedPlan", JSON.stringify(plan));
+          })
+          .catch(error => console.error("Error fetching plan:", error));
+      } else {
+        console.error("No plan ID found in URL");
+      }
+    });
+
+    function savePaymentDetails(paymentMode) {
+      let paymentID;
+      if (paymentMode === "UPI") {
+        paymentID = document.getElementById("upiId").value.trim();
+      } else if (paymentMode === "Net Banking") {
+        paymentID = document.getElementById("accountNumber").value.trim();
+      } else if (paymentMode === "Credit/Debit Card") {
+        paymentID = document.getElementById("cardNumber").value.trim();
+      } else if (paymentMode === "Wallet") {
+        paymentID = document.getElementById("walletId").value.trim();
+      }
+
+      if (!paymentID) {
+        alert("Please enter a valid payment ID.");
+        return;
+      }
+
+      // Retrieve plan details from localStorage
+      const selectedPlan = JSON.parse(localStorage.getItem("selectedPlan"));
+      if (!selectedPlan) {
+        alert("Plan details are missing. Please select a plan again.");
+        return;
+      }
+
+      // Retrieve user phone number
+      const phone = localStorage.getItem("guestMobile") || localStorage.getItem("loggedInMobile") || "N/A";
+
+      const newEntry = {
+        planId: selectedPlan.id,
+        planPrice: selectedPlan.price,
+        planData: selectedPlan.data,
+        validDays: selectedPlan.validity,
+        phone: phone,
+        paymentMode: paymentMode,
+        payID: paymentID,
+        timestamp: new Date().toLocaleString()
+      };
+
+      // Send data to JSON Server
+      fetch("http://localhost:3002/payments", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newEntry),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Payment details saved to JSON Server:", data);
+          localStorage.removeItem("guestMobile");
+          localStorage.removeItem("selectedPlan");
+          window.location.href = "history.html";
+        })
+        .catch((error) => {
+          console.error("Error saving payment details:", error);
+          alert("Failed to save payment details. Please try again.");
+        });
+    }
+  </script>
+</body>
+</html>

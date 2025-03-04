@@ -1,0 +1,459 @@
+{
+  "admin": [
+    {
+      "id": "1",
+      "mobile": "9876543210",
+      "otp": "456123"
+    },
+    {
+      "id": "2",
+      "mobile": "8765432109",
+      "otp": "789456"
+    },
+    {
+      "id": "3",
+      "mobile": "7654321098",
+      "otp": "321654"
+    },
+    {
+      "id": "4",
+      "mobile": "6543210987",
+      "otp": "852963"
+    },
+    {
+      "id": "5",
+      "mobile": "5432109876",
+      "otp": "147258"
+    }
+  ],
+  "users": [
+    {
+      "mobile": "9234567890",
+      "otp": "178245",
+      "id": "09c5"
+    },
+    {
+      "mobile": "8123456789",
+      "otp": "569832",
+      "id": "a682"
+    },
+    {
+      "mobile": "7012345678",
+      "otp": "987654",
+      "id": "4769"
+    },
+    {
+      "mobile": "6789012345",
+      "otp": "245678",
+      "id": "819e"
+    },
+    {
+      "mobile": "5678901234",
+      "otp": "135790",
+      "id": "dbff"
+    },
+    {
+      "mobile": "4567890123",
+      "otp": "864209",
+      "id": "7661"
+    },
+    {
+      "mobile": "3456789012",
+      "otp": "542317",
+      "id": "33a3"
+    },
+    {
+      "mobile": "2345678901",
+      "otp": "679531",
+      "id": "11d8"
+    },
+    {
+      "mobile": "1234567891",
+      "otp": "908172",
+      "id": "6973"
+    },
+    {
+      "mobile": "9876543211",
+      "otp": "341205",
+      "id": "def6"
+    }
+  ],
+  "plans": [
+    {
+      "id": "1",
+      "name": "Unlimited-579",
+      "price": "579",
+      "calls": "Truly Unlimited Calls",
+      "data": "1.5GB/Day",
+      "sms": "100",
+      "validity": "56",
+      "categories": [
+        "Unlimite",
+        "popular"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Unlimited-299",
+      "price": "299",
+      "calls": "Truly Unlimited Calls",
+      "data": "1GB/Day",
+      "sms": "100",
+      "validity": "28",
+      "categories": [
+        "Unlimite",
+        "Recommended"
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Unlimited-859",
+      "price": "859",
+      "calls": "Truly Unlimited Calls",
+      "data": "1.5GB/Day",
+      "sms": "100",
+      "validity": "84",
+      "categories": [
+        "Unlimite",
+        "popular"
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Unlimited-3599",
+      "price": "3599",
+      "calls": "Truly Unlimited Calls",
+      "data": "2GB/Day",
+      "sms": "100",
+      "validity": "365",
+      "categories": [
+        "Unlimite",
+        "Recommended"
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Data-361",
+      "price": "361",
+      "data": "50GB",
+      "validity": "30",
+      "categories": [
+        "Data",
+        "popular"
+      ]
+    },
+    {
+      "id": "6",
+      "name": "Data-211",
+      "price": "211",
+      "data": "1GB/Day",
+      "validity": "30",
+      "categories": [
+        "Data",
+        "Recommended",
+        "New"
+      ]
+    },
+    {
+      "id": "7",
+      "name": "Data-179",
+      "price": "179",
+      "data": "15GB",
+      "validity": "30",
+      "categories": [
+        "Data",
+        "popular",
+        "New"
+      ]
+    },
+    {
+      "name": "popular-300",
+      "price": "300",
+      "data": "1.5",
+      "validity": "56",
+      "calls": "unlimited",
+      "sms": 100,
+      "categories": [
+        "popular",
+        "New"
+      ],
+      "id": "3647"
+    },
+    {
+      "id": "8",
+      "name": "Unlimited-499",
+      "price": "499",
+      "calls": "Truly Unlimited Calls",
+      "data": "2GB/Day",
+      "sms": "100",
+      "validity": "56",
+      "categories": [
+        "Unlimited",
+        "popular"
+      ]
+    },
+    {
+      "id": "9",
+      "name": "Unlimited-699",
+      "price": "699",
+      "calls": "Truly Unlimited Calls",
+      "data": "2.5GB/Day",
+      "sms": "100",
+      "validity": "84",
+      "categories": [
+        "Unlimited",
+        "Recommended"
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Data-501",
+      "price": "501",
+      "data": "75GB",
+      "validity": "30",
+      "categories": [
+        "Data",
+        "popular"
+      ]
+    },
+    {
+      "id": "11",
+      "name": "Data-99",
+      "price": "99",
+      "data": "5GB",
+      "validity": "15",
+      "categories": [
+        "Data",
+        "New"
+      ]
+    },
+    {
+      "id": "12",
+      "name": "Unlimited-999",
+      "price": "999",
+      "calls": "Truly Unlimited Calls",
+      "data": "3GB/Day",
+      "sms": "100",
+      "validity": "90",
+      "categories": [
+        "Unlimited",
+        "popular",
+        "Recommended"
+      ]
+    },
+    {
+      "id": "13",
+      "name": "Data-299",
+      "price": "299",
+      "data": "25GB",
+      "validity": "30",
+      "categories": [
+        "Data",
+        "Recommended"
+      ]
+    },
+    {
+      "id": "14",
+      "name": "Unlimited-199",
+      "price": "199",
+      "data": "500MB/Day",
+      "validity": "28 Days",
+      "calls": "Truly Unlimited Calls",
+      "sms": 101,
+      "categories": [
+        "Unlimited",
+        "New"
+      ]
+    }
+  ],
+  "userPlanValidity": [
+    {
+      "name": "Rajesh",
+      "mobile": "9876543210",
+      "email": "rajesh@example.com",
+      "plan": "Unlimited-499",
+      "dateOfPayment": "2025-02-01",
+      "paymentMode": "Credit Card",
+      "validDays": 3,
+      "id": "ddc3"
+    },
+    {
+      "name": "Vikram",
+      "mobile": "9123456789",
+      "email": "vikram@example.com",
+      "plan": "Premium-799",
+      "dateOfPayment": "2025-01-20",
+      "paymentMode": "Net Banking",
+      "validDays": 2,
+      "id": "5d6e"
+    },
+    {
+      "name": "Koushik",
+      "mobile": "0987654321",
+      "email": "koushik@example.com",
+      "plan": "Premium-799",
+      "dateOfPayment": "2025-01-20",
+      "paymentMode": "Debit Card",
+      "validDays": 1,
+      "id": "dcbf"
+    },
+    {
+      "name": "Giri",
+      "mobile": "9167892345",
+      "email": "giri@example.com",
+      "plan": "Premium-799",
+      "dateOfPayment": "2025-01-20",
+      "paymentMode": "UPI",
+      "validDays": 3,
+      "id": "1d7c"
+    },
+    {
+      "name": "Priya",
+      "mobile": "9988776655",
+      "email": "priya@example.com",
+      "plan": "Data-299",
+      "dateOfPayment": "2025-03-15",
+      "paymentMode": "UPI",
+      "validDays": 7,
+      "id": "19f2"
+    },
+    {
+      "name": "Arun",
+      "mobile": "9876541230",
+      "email": "arun@example.com",
+      "plan": "Unlimited-499",
+      "dateOfPayment": "2025-02-10",
+      "paymentMode": "Debit Card",
+      "validDays": 5,
+      "id": "cf74"
+    },
+    {
+      "name": "Sneha",
+      "mobile": "9123456780",
+      "email": "sneha@example.com",
+      "plan": "Premium-799",
+      "dateOfPayment": "2025-01-25",
+      "paymentMode": "Credit Card",
+      "validDays": 4,
+      "id": "5631"
+    },
+    {
+      "name": "Rahul",
+      "mobile": "9876543211",
+      "email": "rahul@example.com",
+      "plan": "Data-299",
+      "dateOfPayment": "2025-03-01",
+      "paymentMode": "Net Banking",
+      "validDays": 6,
+      "id": "8456"
+    },
+    {
+      "name": "Anjali",
+      "mobile": "9123456782",
+      "email": "anjali@example.com",
+      "plan": "Unlimited-499",
+      "dateOfPayment": "2025-02-05",
+      "paymentMode": "UPI",
+      "validDays": 3,
+      "id": "9a3a"
+    },
+    {
+      "name": "Manoj",
+      "mobile": "9876543213",
+      "email": "manoj@example.com",
+      "plan": "Premium 799",
+      "dateOfPayment": "2025-01-30",
+      "paymentMode": "Debit Card",
+      "validDays": 2,
+      "id": "83f7"
+    }
+  ],
+  "payments": [
+    {
+      "id": "ba69",
+      "planPrice": "₹3599",
+      "planData": "2GB/Day",
+      "validDays": "365 Days",
+      "phone": "9876543210",
+      "payID": "asdfghj12345678",
+      "timestamp": "25/2/2025, 7:17:31 am"
+    },
+    {
+      "id": "01f3",
+      "planPrice": "₹299",
+      "planData": "1GB/Day",
+      "validDays": "28 Days",
+      "phone": "1234567890",
+      "payID": "asdfghj12345678",
+      "timestamp": "26/2/2025, 6:42:27 am"
+    },
+    {
+      "id": "d112",
+      "planPrice": "₹3599",
+      "planData": "2GB/Day",
+      "validDays": "365 Days",
+      "phone": "1234567890",
+      "payID": "asdfghj12345678",
+      "timestamp": "27/2/2025, 2:53:52 pm"
+    },
+    {
+      "id": "0a9c",
+      "planPrice": "₹3599",
+      "planData": "2GB/Day",
+      "validDays": "365 Days",
+      "phone": "9876543210",
+      "payID": "asdfghj12345678",
+      "timestamp": "28/2/2025, 12:18:43 pm"
+    },
+    {
+      "id": "1bc6",
+      "planPrice": "₹3599",
+      "planData": "2GB/Day",
+      "validDays": "365 Days",
+      "phone": "9876543210",
+      "payID": "asdfghj12345678",
+      "timestamp": "28/2/2025, 2:38:54 pm"
+    },
+    {
+      "id": "554b",
+      "planPrice": "₹3599",
+      "planData": "2GB/Day",
+      "validDays": "365 Days",
+      "phone": "1234567890",
+      "payID": "asdfghj12345678",
+      "timestamp": "28/2/2025, 4:03:06 pm"
+    },
+    {
+      "id": "821c",
+      "planPrice": "₹3599",
+      "planData": "2GB/Day",
+      "validDays": "365 Days",
+      "phone": "9876543210",
+      "paymentMode": "Net Banking",
+      "payID": "qwtgshnsndfx",
+      "timestamp": "1/3/2025, 5:57:37 am"
+    },
+    {
+      "id": "38c7",
+      "planId": "1",
+      "planPrice": "579",
+      "planData": "1.5GB/Day",
+      "validDays": "56",
+      "phone": "1234567890",
+      "paymentMode": "UPI",
+      "payID": "23136t32163",
+      "timestamp": "2/3/2025, 6:53:23 am"
+    },
+    {
+      "id": "63af",
+      "planId": "1",
+      "planPrice": "579",
+      "planData": "1.5GB/Day",
+      "validDays": "56",
+      "phone": "1234567890",
+      "paymentMode": "Net Banking",
+      "payID": "24316453586",
+      "timestamp": "2/3/2025, 12:24:41 pm"
+    }
+  ]
+}

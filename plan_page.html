@@ -35,8 +35,30 @@
         .portfolio-container .col-md-4 {
             display: none; /* Hide initially, show via JS */
         }
-
-
+        @media (max-width: 1250px) {
+    .col-md-4 {
+        flex: 0 0 auto;
+        width: 25% !important;
+    }
+}
+@media (max-width: 1111px) {
+    .col-md-4 {
+        flex: 0 0 auto;
+        width: 33.3333333% !important;
+    }
+}  
+@media (max-width: 910px) {
+    .col-md-4 {
+        flex: 0 0 auto;
+        width: 50% !important;
+    }
+}
+@media (max-width: 720px) {
+    .col-md-4 {
+        flex: 0 0 auto;
+        width: 100% !important;
+    }
+}       
     </style>
 </head>
 <body>
@@ -57,7 +79,7 @@
                 <a class="nav-link" href="#">View Plans</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#About-us" tabindex="1" aria-disabled="true">About Us</a>
+                <a class="nav-link" href="AboutUs.html" tabindex="1" aria-disabled="true">About Us</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#FAQS" tabindex="-1" aria-disabled="true">Help</a>
@@ -78,7 +100,6 @@
         <div class="container-fluid p-5" style="background-color: #fcae3914;">
           <div class="conatiner">
             <!-- Category -->
-              
               <div class="filterAll">
                   <ul class="filters nav nav-tabs nav-fill">
                       <li class="nav-item">
@@ -98,61 +119,50 @@
                       </li>
                     </ul>
               </div>
+          </div>
               <div class="portfolio-container mb-3">
-                <div class="row container" id="planContainer">
+                <div class="row " id="planContainer">
                   <!-- Plan cards will be dynamically inserted here -->
                 </div>
               </div>
-          </div>
         </div>
 
         <!-- OffCanvas -->
         <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" style="height: 50vh; width: 400px; margin: 0 auto; border-top-left-radius: 15px; border-top-right-radius: 15px;">
-          <div class="offcanvas-header" style="background-color: #f8f9fa; border-bottom: 1px solid #dee2e6;">
+          <div class="offcanvas-header" style="background-color: #ffdc13; border-bottom: 1px solid #fff708;">
             <h5 class="offcanvas-title" id="offcanvasBottomLabel" style="font-size: 1.5rem; font-weight: bold; color: #333;">Plan Details</h5>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
-          <div class="offcanvas-body" id="offcanvasBody" style="padding: 20px; font-size: 1rem; color: #555;">
+          <div class="offcanvas-body" id="offcanvasBody" style="padding: 30px; font-size: 1rem; color: #ffffff;">
             <!-- Plan details will be dynamically inserted here -->
           </div>
         </div>
  <div class="container" style="margin-top: 90px;">
         <!-- FAQS -->
-        <div class="container mt-5 p-3 pb-5" id="FAQS">
-          <h1 class=" text-center p-3">FAQS</h1>
-          <div class="accordion accordion-flush mb-2" id="accordionFlushExample">
-              <div class="accordion-item shadow m-1">
-                <h2 class="accordion-header" id="flush-headingOne">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                    Q1: What types of prepaid plans are available?
-                  </button>
-                </h2>
-                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                  <div class="accordion-body">We offer different types of plans, including unlimited calling, data packs, international roaming, and special recharge plans.</div>
-                </div>
-              </div>
-              <div class="accordion-item shadow m-1">
-                <h2 class="accordion-header" id="flush-headingTwo">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                    Q2: Can I recharge for someone else?
-                  </button>
-                </h2>
-                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                  <div class="accordion-body">Yes, you can recharge for any prepaid number by entering the mobile number and selecting the preferred plan.</div>
-                </div>
-              </div>
-              <div class="accordion-item shadow m-1">
-                <h2 class="accordion-header" id="flush-headingThree">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                    Q3: What happens if I recharge with two different plans?
-                  </button>
-                </h2>
-                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                  <div class="accordion-body">If you recharge with multiple plans, they will be queued, and the benefits will be activated based on their validity and priority.</div>
-                </div>
-              </div>
+        <h1 class="m-5">FAQs</h1>
+        <ol class="olcards">
+          <li style="--cardColor:#fc374e">
+            <div class="content">
+              <div class="icon">😀</div>
+              <div class="title">Q1: What types of prepaid plans are available?</div>
+              <div class="text">We offer different types of plans, including unlimited calling, data packs, international roaming, and special recharge plans.</div>
             </div>
-        </div>
+          </li>
+          <li style="--cardColor:#36aeb3">
+            <div class="content">
+              <div class="icon">😁</div>
+              <div class="title">Q2: Can I recharge for someone else?</div>
+              <div class="text">Yes, you can recharge for any prepaid number by entering the mobile number and selecting the preferred plan.</div>
+            </div>
+          </li>
+          <li style="--cardColor:#162d59">
+            <div class="content">
+              <div class="icon">😉</div>
+              <div class="title">Q3: What happens if I recharge with two different plans?</div>
+              <div class="text">If you recharge with multiple plans, they will be queued, and the benefits will be activated based on their validity and priority.</div>
+            </div>
+          </li>
+        </ol>
         
     </div>
     <!-- footer -->

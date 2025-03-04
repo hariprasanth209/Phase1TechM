@@ -6,6 +6,27 @@
     <title>Payment History</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="Assets/CSS/style.css">
+    <style>
+      th{
+        padding: 13px !important;
+      }
+      td{
+        padding: 15px !important;
+      }
+      thead{
+        border-radius: 10px !important;
+      }
+      .start{
+        border-top-left-radius: 10px;
+      }
+      .end{
+        border-top-right-radius: 10px;
+      }
+      .table-dark{
+        border-color: rgba(0, 0, 0, 0);
+        box-shadow: 2px 0 10px black;
+      }
+    </style>
 </head>
 <body>
     <!-- navBar -->
@@ -39,11 +60,11 @@
       <table id="historyTable" class="table table-bordered table-striped">
         <thead class="table-dark">
           <tr>
-            <th>Mobile Number</th>
+            <th class="start">Mobile Number</th>
             <th>Plan Price</th>
             <th>Plan Data</th>
             <th>Validity (Days)</th>
-            <th>Timestamp</th>
+            <th class="end">Timestamp</th>
           </tr>
         </thead>
         <tbody>

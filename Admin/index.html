@@ -88,7 +88,7 @@
             const mobile = document.getElementById('mobile').value;
             const otp = document.getElementById('otp').value;
         
-            fetch('http://localhost:3000/admins')
+            fetch('http://localhost:3000/admin')
                 .then(response => response.json())
                 .then(admins => {
                     const admin = admins.find(admin => admin.mobile === mobile && admin.otp === otp);

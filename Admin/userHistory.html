@@ -7,12 +7,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="Assets/CSS/Style.css">
+    <style>
+        #sidebar{
+            height: 135vh;
+            position: fixed;
+        }
+    </style>
 </head>
 <body>
     <div class="container-fluid">
-        <div class="row ">
+        <div class="row">
             <!-- Sidebar -->
-            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
                 <div class="position-sticky pt-3">
                     <!-- Close Button for Small Screens -->
                     <div class="d-flex justify-content-end d-md-none">
@@ -33,12 +39,11 @@
                             <a class="nav-link" href="userHistory.html"><i class="fas fa-history"></i> User History</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fas fa-cog"></i> Settings</a>
+                            <a class="nav-link" href="setting.html"><i class="fas fa-cog"></i> Settings</a>
                         </li>
                     </ul>
                 </div>
             </nav>
-
             <!-- Main Content -->
             <main class="col-md-9 ms-sm-auto col-lg-10 main-content">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -86,77 +91,54 @@
                             </tr>
                         </thead>
                         <tbody id="userHistory">
+                            <!-- Sample Data -->
                             <tr>
                                 <td>Johnny depp</td>
                                 <td>9876543210</td>
-                                <td>$10</td>
-                                <td><span class="badge badge-success">Success</span></td>
+                                <td>₹123</td>
+                                <td><span class="badge bg-success">Success</span></td>
                                 <td>2023-10-01</td>
-                                <td><button class="btn btn-sm btn-outline-dark"><i class="fas fa-eye"></i> View</button></td>
+                                <td><button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#detailsModal" onclick="showDetails(this)"><i class="fas fa-eye"></i> View</button></td>
                             </tr>
                             <tr>
                                 <td>Smith</td>
                                 <td>9123456789</td>
-                                <td>$20</td>
-                                <td><span class="badge badge-warning">Pending</span></td>
+                                <td>₹399</td>
+                                <td><span class="badge bg-warning">Pending</span></td>
                                 <td>2023-10-02</td>
-                                <td><button class="btn btn-sm btn-outline-dark"><i class="fas fa-eye"></i> View</button></td>
+                                <td><button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#detailsModal" onclick="showDetails(this)"><i class="fas fa-eye"></i> View</button></td>
                             </tr>
                             <tr>
-                                <td> Giri</td>
+                                <td>Giri</td>
                                 <td>9988776655</td>
-                                <td>$15</td>
-                                <td><span class="badge badge-danger">Failed</span></td>
+                                <td>₹256</td>
+                                <td><span class="badge bg-danger">Failed</span></td>
                                 <td>2023-10-03</td>
-                                <td><button class="btn btn-sm btn-outline-dark"><i class="fas fa-eye"></i> View</button></td>
+                                <td><button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#detailsModal" onclick="showDetails(this)"><i class="fas fa-eye"></i> View</button></td>
                             </tr>
                             <tr>
-                                <td>Ravi</td>
-                                <td>9876543210</td>
-                                <td>$10</td>
-                                <td><span class="badge badge-success">Success</span></td>
+                                <td>John cena</td>
+                                <td>3210987654</td>
+                                <td>₹999</td>
+                                <td><span class="badge bg-success">Success</span></td>
                                 <td>2023-10-01</td>
-                                <td><button class="btn btn-sm btn-outline-dark"><i class="fas fa-eye"></i> View</button></td>
+                                <td><button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#detailsModal" onclick="showDetails(this)"><i class="fas fa-eye"></i> View</button></td>
                             </tr>
                             <tr>
-                                <td>Wamma watson</td>
-                                <td>9123456789</td>
-                                <td>$20</td>
-                                <td><span class="badge badge-warning">Pending</span></td>
+                                <td>Sabari</td>
+                                <td>6789912345</td>
+                                <td>₹20</td>
+                                <td><span class="badge bg-warning">Pending</span></td>
                                 <td>2023-10-02</td>
-                                <td><button class="btn btn-sm btn-outline-dark"><i class="fas fa-eye"></i> View</button></td>
+                                <td><button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#detailsModal" onclick="showDetails(this)"><i class="fas fa-eye"></i> View</button></td>
                             </tr>
                             <tr>
-                                <td>Johnson</td>
-                                <td>9988776655</td>
-                                <td>$15</td>
-                                <td><span class="badge badge-danger">Failed</span></td>
+                                <td>koushik</td>
+                                <td>7665599887</td>
+                                <td>₹15</td>
+                                <td><span class="badge bg-danger">Failed</span></td>
                                 <td>2023-10-03</td>
-                                <td><button class="btn btn-sm btn-outline-dark"><i class="fas fa-eye"></i> View</button></td>
-                            </tr>
-                            <tr>
-                                <td>John chena</td>
-                                <td>9876543210</td>
-                                <td>$10</td>
-                                <td><span class="badge badge-success">Success</span></td>
-                                <td>2023-10-01</td>
-                                <td><button class="btn btn-sm btn-outline-dark"><i class="fas fa-eye"></i> View</button></td>
-                            </tr>
-                            <tr>
-                                <td>Jana</td>
-                                <td>9123456789</td>
-                                <td>$20</td>
-                                <td><span class="badge badge-warning">Pending</span></td>
-                                <td>2023-10-02</td>
-                                <td><button class="btn btn-sm btn-outline-dark"><i class="fas fa-eye"></i> View</button></td>
-                            </tr>
-                            <tr>
-                                <td>Alice</td>
-                                <td>9988776655</td>
-                                <td>$15</td>
-                                <td><span class="badge badge-danger">Failed</span></td>
-                                <td>2023-10-03</td>
-                                <td><button class="btn btn-sm btn-outline-dark"><i class="fas fa-eye"></i> View</button></td>
+                                <td><button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#detailsModal" onclick="showDetails(this)"><i class="fas fa-eye"></i> View</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -165,6 +147,29 @@
         </div>
     </div>
 
+    <!-- Modal for Details -->
+    <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailsModalLabel">User Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>User:</strong> <span id="modalUser"></span></p>
+                    <p><strong>Mobile Number:</strong> <span id="modalMobile"></span></p>
+                    <p><strong>Amount:</strong> <span id="modalAmount"></span></p>
+                    <p><strong>Status:</strong> <span id="modalStatus"></span></p>
+                    <p><strong>Date:</strong> <span id="modalDate"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Sample filter function (can be expanded with backend integration)
         function filterHistory() {
@@ -188,6 +193,22 @@
                     row.style.display = "none";
                 }
             });
+        }
+
+        // Function to show details in modal
+        function showDetails(button) {
+            const row = button.closest("tr");
+            const user = row.cells[0].textContent;
+            const mobile = row.cells[1].textContent;
+            const amount = row.cells[2].textContent;
+            const status = row.cells[3].textContent;
+            const date = row.cells[4].textContent;
+
+            document.getElementById("modalUser").textContent = user;
+            document.getElementById("modalMobile").textContent = mobile;
+            document.getElementById("modalAmount").textContent = amount;
+            document.getElementById("modalStatus").textContent = status;
+            document.getElementById("modalDate").textContent = date;
         }
     </script>
 </body>

@@ -8,6 +8,7 @@ header .navbar .container-fluid{
     background-color: #ff9900;
     padding: 4px;
     color: black;
+    box-shadow: 0 0 10px;
 }
 footer{
     background-color: #2C2C2C;

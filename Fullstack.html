@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer CRUD</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Customer CRUD</h1>
+      <a
+        href="javascript:void(0);"
+        class="add-btn"
+        onclick="openAddCustomerForm()"
+        >Add Customer</a
+      >
+
+      <table id="customerTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>age</th>
+            <th>Phone No</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Customer rows will be inserted here -->
+        </tbody>
+      </table>
+
+      <!-- Add/Edit Customer Form -->
+      <div id="customerForm" style="display: none">
+        <h2 id="formTitle">Add Customer</h2>
+        <form id="customerFormElement">
+          <input type="hidden" id="customerId" />
+          <label for="name">Name:</label>
+          <input type="text" id="name" required />
+
+          <label for="age">Age:</label>
+          <input type="text" id="age" required />
+
+          <label for="phoneNo">Phone No:</label>
+          <input type="text" id="phoneNo" required />
+
+          <div class="form-group">
+            <button type="submit" class="form-btn" id="saveBtn">
+              Save Customer
+            </button>
+            <button type="button" class="cancel-btn" onclick="closeForm()">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const apiUrl = "http://localhost:8002/customers";
+
+      // Fetch all customers on page load
+      window.onload = () => {
+        fetchCustomers();
+      };
+
+      // Fetch customer list
+      function fetchCustomers() {
+        fetch(apiUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            const customerTable = document.querySelector(
+              "#customerTable tbody"
+            );
+            customerTable.innerHTML = "";
+            data.forEach((customers) => {
+              const row = document.createElement("tr");
+              row.innerHTML = `
+                            <td>${customers.id}</td>
+                            <td>${customers.name}</td>
+                            <td>${customers.age}</td>
+                            <td>${customers.phoneNo}</td>
+                            <td>
+                                <button class="btn edit-btn" onclick="editCustomer(${customers.id})">Edit</button>
+                                <button class="btn delete-btn" onclick="deleteCustomer(${customers.id})">Delete</button>
+                            </td>
+                        `;
+              customerTable.appendChild(row);
+            });
+          })
+          .catch((err) => console.error("Error fetching customers:", err));
+      }
+
+      // Open Add Customer Form
+      function openAddCustomerForm() {
+        document.getElementById("customerForm").style.display = "block";
+        document.getElementById("formTitle").textContent = "Add Customer";
+        document.getElementById("customerFormElement").reset();
+        document.getElementById("customerId").value = "";
+        document.getElementById("saveBtn").textContent = "Save Customer";
+      }
+
+      // Open Edit Customer Form
+      function editCustomer(id) {
+        fetch(`${apiUrl}/${id}`)
+          .then((response) => response.json())
+          .then((customers) => {
+            document.getElementById("customerForm").style.display = "block";
+            document.getElementById("formTitle").textContent = "Edit Customer";
+            document.getElementById("customerId").value = customers.id;
+            document.getElementById("name").value = customers.name;
+            document.getElementById("age").value = customers.age;
+            document.getElementById("phoneNo").value = customers.phoneNo;
+            document.getElementById("saveBtn").textContent = "Update Customer";
+          })
+          .catch((err) => console.error("Error fetching customer:", err));
+      }
+
+      // Close Add/Edit Customer Form
+      function closeForm() {
+        document.getElementById("customerForm").style.display = "none";
+      }
+
+      // Handle form submit (Add or Update customer)
+      document
+        .getElementById("customerFormElement")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          const customerId = document.getElementById("customerId").value;
+          const customerData = {
+            name: document.getElementById("name").value,
+            age: document.getElementById("age").value,
+            phoneNo: document.getElementById("phoneNo").value,
+          };
+
+          if (customerId) {
+            // Update customer
+            fetch(`${apiUrl}/${customerId}`, {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(customerData),
+            })
+              .then(() => {
+                fetchCustomers();
+                closeForm();
+              })
+              .catch((err) => console.error("Error updating customer:", err));
+          } else {
+            // Add customer
+            fetch(apiUrl, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(customerData),
+            })
+              .then(() => {
+                fetchCustomers();
+                closeForm();
+              })
+              .catch((err) => console.error("Error adding customer:", err));
+          }
+        });
+
+      // Delete customer
+      function deleteCustomer(id) {
+        if (confirm("Are you sure you want to delete this customer?")) {
+          fetch(`${apiUrl}/${id}`, {
+            method: "DELETE",
+          })
+            .then(() => fetchCustomers())
+            .catch((err) => console.error("Error deleting customer:", err));
+        }
+      }
+    </script>
+  </body>
+</html>

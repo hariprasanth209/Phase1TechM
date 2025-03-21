@@ -278,7 +278,7 @@ footer .fab:hover {
     transition: transform 0.3s ease;
 }
 .card-header {
-    background-color: #363065; /* Primary color for header */
+    background-color: #b00000; /* Primary color for header */
     color: white;
     font-weight: bold;
     padding-bottom: 30px;
@@ -309,7 +309,7 @@ footer .fab:hover {
 /* Card Body Styling */
 .card-body {
     padding: 20px;
-    border: 3px solid;
+    border: 2px solid #b00000;
 }
 
 .card-text {

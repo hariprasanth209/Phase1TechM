@@ -112,7 +112,7 @@
         // Fetch data from JSON server and populate the table
         async function fetchData() {
             try {
-                const response = await fetch('http://localhost:3000/userPlanValidity'); // Replace with your JSON server endpoint
+                const response = await fetch('http://localhost:8003/api/payment-history/latest'); // Replace with your JSON server endpoint
                 const data = await response.json();
                 populateTable(data);
                 filterTable(); // Apply initial filtering and sorting
@@ -123,23 +123,39 @@
 
         // Populate the table with data
         function populateTable(data) {
-            const tbody = document.getElementById('expiry-users');
-            tbody.innerHTML = ''; // Clear existing rows
+    const tbody = document.getElementById('expiry-users');
+    tbody.innerHTML = ''; // Clear existing rows
 
-            data.forEach(user => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${user.name}</td>
-                    <td>${user.mobile}</td>
-                    <td>${user.email}</td>
-                    <td>${user.plan}</td>
-                    <td>${user.dateOfPayment}</td>
-                    <td>${user.paymentMode}</td>
-                    <td>${user.validDays}</td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
+    data.forEach(user => {
+        const row = document.createElement('tr');
+
+        // Parse user.dateTime and add validityDays
+        const dateTime = new Date(user.dateTime);
+        const expiryDate = new Date(dateTime);
+        expiryDate.setDate(expiryDate.getDate() + user.plan.validityDays);
+
+        // Get the current date
+        const currentDate = new Date();
+
+        // Calculate the difference in days
+        const timeDifference = expiryDate - currentDate;
+        const daysRemaining = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+
+        // Display the remaining days (or "Expired" if the date has passed)
+        const date = daysRemaining > 0 ? `${daysRemaining} days remaining` : `Expried ${daysRemaining}`;
+
+        row.innerHTML = `
+            <td>${user.user.name}</td>
+            <td>${user.user.phoneNumber}</td>
+            <td>${user.user.email}</td>
+            <td>${user.plan.name}</td>
+            <td>${new Date(user.dateTime).toLocaleString()}</td>
+            <td>${user.payMethod}</td>
+            <td>${date}</td>
+        `;
+        tbody.appendChild(row);
+    });
+}
 
         // Filter and sort the table
         function filterTable() {

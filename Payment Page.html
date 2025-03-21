@@ -174,103 +174,108 @@
       }
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
-      // Retrieve the logged-in and guest mobile numbers from localStorage
-      const loggedInMobile = localStorage.getItem("loggedInMobile");
-      const guestMobile = localStorage.getItem("guestMobile");
-      const phone = guestMobile || loggedInMobile;
-      const phoneElement = document.getElementById("phone");
-      if (phone) {
-        phoneElement.innerText = phone;
-      } else {
-        phoneElement.innerText = "No mobile number found.";
-      }
+   // Display plans in card
+document.addEventListener("DOMContentLoaded", function () {
+  // Retrieve the logged-in and guest mobile numbers from localStorage
+  const loggedInMobile = localStorage.getItem("loggedInMobile");
+  const guestMobile = localStorage.getItem("guestMobile");
+  const phone = guestMobile || loggedInMobile;
+  const phoneElement = document.getElementById("phone");
+  if (phone) {
+    phoneElement.innerText = phone;
+  } else {
+    phoneElement.innerText = "No mobile number found.";
+  }
 
-      // Get the plan ID from the URL
-      const urlParams = new URLSearchParams(window.location.search);
-      const planId = urlParams.get('id');
+  // Get plan ID from URL params
+  const urlParams = new URLSearchParams(window.location.search);
+  const planId = urlParams.get('id');
 
-      if (planId) {
-        fetch(`http://localhost:3000/plans/${planId}`)
-          .then(response => {
-            if (!response.ok) {
-              throw new Error("Plan not found");
-            }
-            return response.json();
-          })
-          .then(plan => {
-            // Display fetched plan details
-            document.getElementById("planPrice").innerText = `₹${plan.price}`;
-            document.getElementById("planData").innerText = plan.data;
-            document.getElementById("validDays").innerText = `${plan.validity} days`;
-
-            // Store plan details in localStorage for later use
-            localStorage.setItem("selectedPlan", JSON.stringify(plan));
-          })
-          .catch(error => console.error("Error fetching plan:", error));
-      } else {
-        console.error("No plan ID found in URL");
-      }
-    });
-
-    function savePaymentDetails(paymentMode) {
-      let paymentID;
-      if (paymentMode === "UPI") {
-        paymentID = document.getElementById("upiId").value.trim();
-      } else if (paymentMode === "Net Banking") {
-        paymentID = document.getElementById("accountNumber").value.trim();
-      } else if (paymentMode === "Credit/Debit Card") {
-        paymentID = document.getElementById("cardNumber").value.trim();
-      } else if (paymentMode === "Wallet") {
-        paymentID = document.getElementById("walletId").value.trim();
-      }
-
-      if (!paymentID) {
-        alert("Please enter a valid payment ID.");
-        return;
-      }
-
-      // Retrieve plan details from localStorage
-      const selectedPlan = JSON.parse(localStorage.getItem("selectedPlan"));
-      if (!selectedPlan) {
-        alert("Plan details are missing. Please select a plan again.");
-        return;
-      }
-
-      // Retrieve user phone number
-      const phone = localStorage.getItem("guestMobile") || localStorage.getItem("loggedInMobile") || "N/A";
-
-      const newEntry = {
-        planId: selectedPlan.id,
-        planPrice: selectedPlan.price,
-        planData: selectedPlan.data,
-        validDays: selectedPlan.validity,
-        phone: phone,
-        paymentMode: paymentMode,
-        payID: paymentID,
-        timestamp: new Date().toLocaleString()
-      };
-
-      // Send data to JSON Server
-      fetch("http://localhost:3000/payments", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newEntry),
+  if (planId) {
+    fetch(`http://localhost:8003/api/plans/${planId}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Plan not found");
+        }
+        return response.json();
       })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("Payment details saved to JSON Server:", data);
-          localStorage.removeItem("guestMobile");
-          localStorage.removeItem("selectedPlan");
-          window.location.href = "history.html";
-        })
-        .catch((error) => {
-          console.error("Error saving payment details:", error);
-          alert("Failed to save payment details. Please try again.");
-        });
-    }
+      .then(plan => {
+        // Display fetched plan details
+        document.getElementById("planPrice").innerText = `₹${plan.price}`;
+        document.getElementById("planData").innerText = plan.data;
+        document.getElementById("validDays").innerText = `${plan.validityDays} days`;
+
+        // Store plan details in localStorage for later use
+        localStorage.setItem("selectedPlan", JSON.stringify(plan));
+      })
+      
+      .catch(error => console.error("Error fetching plan:", error));
+  } else {
+    console.error("No plan ID found in URL");
+  }
+});
+
+function savePaymentDetails(paymentMode) {
+  // Retrieve plan details from localStorage
+  const plan = JSON.parse(localStorage.getItem("selectedPlan"));
+  if (!plan) {
+    console.error("Plan details not found");
+    alert("Plan details not found. Please select a plan.");
+    return;
+  }
+
+  // Prepare payment data
+  const paymentData = {
+    payMethod: paymentMode,
+    rechargePhNo: localStorage.getItem("guestMobile") || localStorage.getItem("loggedInMobile") || null,
+    userId: localStorage.getItem("guestId") || localStorage.getItem("userID") || null,
+    amount: plan.price,
+    planId: plan.planId
+  };
+
+  // Send payment data to the backend
+  fetch('http://localhost:8003/api/payment-history', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(paymentData)
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Failed to create payment history");
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Success:', data);
+      alert('Payment History created successfully!');
+
+      // Clear the display card
+      clearDisplayCard();
+
+      // Clear all localStorage items except loggedInMobile
+      const loggedInMobile = localStorage.getItem("loggedInMobile"); // Save loggedInMobile
+      localStorage.removeItem("guestId"); 
+      localStorage.removeItem("guestMobile");
+      localStorage.removeItem("plan");
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      alert('Failed to create Payment History.');
+    });
+}
+
+// Function to clear the display card
+function clearDisplayCard() {
+  // Clear the phone number display
+  document.getElementById("phone").innerText = "";
+
+  // Clear the plan details display
+  document.getElementById("planPrice").innerText = "";
+  document.getElementById("planData").innerText = "";
+  document.getElementById("validDays").innerText = "";
+}
 
     // background image change
     function changeBackground(imageName) {

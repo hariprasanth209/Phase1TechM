@@ -6,6 +6,8 @@
   <title>New SIM Card Request</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="Assets/CSS/style.css">
   <!-- Custom CSS -->
   <style>
@@ -65,7 +67,7 @@
       <div class="col-lg-6 order-lg-1 order-2">
         <div class="form-container">
           <h2 class="text-center mb-4">Request a New SIM Card</h2>
-          <form>
+          <form id="registerForm">
             <div class="mb-3">
               <label for="fullName" class="form-label">Full Name</label>
               <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
@@ -76,7 +78,7 @@
             </div>
             <div class="mb-3">
               <label for="phone" class="form-label">Phone Number</label>
-              <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
+              <input type="tel" class="form-control" maxlength="10" id="phone" placeholder="Enter your phone number" required>
             </div>
             <div class="mb-3">
               <label for="address" class="form-label">Delivery Address</label>
@@ -92,7 +94,7 @@
               </select>
             </div>
             <div class="text-center">
-              <button type="submit" class="btn btn-ripple">Submit Request</button>
+              <button type="submit" id="registerButton" class="btn btn-ripple">Submit Request</button>
             </div>
           </form>
         </div>
@@ -163,9 +165,9 @@
         <div class="col-md-3 mb-3">
           <h5> <strong>Follow Us</strong> </h5>
           <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="text-white me-3"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="text-white me-3"><i class="fab fa-facebook"></i></a>
-                <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="text-white me-3"><i class="fab fa-linkedin"></i></a>
+          <a href="#" class="text-white me-3"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
       
@@ -176,12 +178,44 @@
         </div>
       </div>
     </div>
-    </footer>
+  </footer>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Custom JS -->
   <script>
+    document.getElementById("registerForm").addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById("fullName").value;
+      const phoneNumber = document.getElementById("phone").value;
+      const email = document.getElementById("email").value;
+      const address = document.getElementById("address").value;
+
+      const registerButton = document.getElementById("registerButton");
+      registerButton.disabled = true;
+
+      try {
+        const response = await fetch("http://localhost:8003/api/users/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, phoneNumber, address })
+        });
+        const message = await response.text();
+        
+        if (response.ok) {
+          alert("Register successfully");
+          window.location.href = "index.html";
+        } else {
+          alert(message);
+        }
+      } catch (error) {
+        alert("An error occurred. Please try again");
+      } finally {
+        registerButton.disabled = false;
+      }
+    });
+
     // Example: Track Order Functionality
     document.querySelector('#tracking form').addEventListener('submit', function (e) {
       e.preventDefault();

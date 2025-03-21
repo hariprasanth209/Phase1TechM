@@ -3,225 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Animated Profile Card</title>
+    <title>Plans Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: #f5f5f5;
-            margin: 0;
-            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
         }
-
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
         .card {
-            width: 320px;
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            border: none;
-            background: white;
-            transition: all 0.5s ease-in-out;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
         }
-
-        .image-container {
-            position: relative;
-            text-align: center;
-            transition: all 0.5s ease-in-out;
-        }
-
-        .profile-img {
-            width: 100%;
-            display: block;
-            border-radius: 10px 10px 0 0;
-            transition: all 0.5s ease-in-out;
-        }
-
-        .menu-button {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 40px;
-            height: 40px;
-            background: #d32f2f;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .menu-button:hover {
-            background: #b71c1c;
-        }
-
-        .menu-icon {
-            width: 20px;
-            height: 2px;
-            background: white;
-            position: relative;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .menu-icon::before,
-        .menu-icon::after {
-            content: "";
-            position: absolute;
-            width: 20px;
-            height: 2px;
-            background: white;
-            left: 0;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .menu-icon::before {
-            top: -6px;
-        }
-
-        .menu-icon::after {
-            top: 6px;
-        }
-
-        .card.expanded .menu-icon {
-            transform: rotate(45deg);
-        }
-
-        .card.expanded .menu-icon::before {
-            transform: rotate(90deg);
-            top: 0;
-        }
-
-        .card.expanded .menu-icon::after {
-            transform: rotate(90deg);
-            top: 0;
-        }
-
-        .card-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(135deg, #e53935, #d81b60);
-            padding: 15px;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-            transition: all 0.5s ease-in-out;
-        }
-
-        .triangle {
-            position: absolute;
-            top: -20px;
-            left: 0px;
-            border-right: 20px solid #830000;
-            border-top: 20px solid transparent;
-        }
-
-        .text-content {
-            text-align: center;
-            transition: all 0.5s ease-in-out;
-        }
-
-        .text-content h2 {
-            margin: 0;
-            font-size: 1.4em;
-        }
-
-        .text-content p {
-            margin: 5px 0 0;
-            font-size: 1em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Hidden content */
-        .card-details {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 10px;
-            opacity: 0;
-            transform: translateY(-20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        /* Expand effect */
-        .card.expanded {
-            width: 320px;
-            height: auto;
-        }
-
-        .card.expanded .card-info {
-            top: 0;
-            bottom: auto;
-            border-radius: 10px 10px 0 0;
-        }
-
-        .card.expanded .image-container {
-            position: absolute;
-            top: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 80px;
-        }
-
-        .card.expanded .profile-img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .card.expanded .card-details {
-            opacity: 1;
-            transform: translateY(0);
+        .btn {
+            margin-right: 10px;
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1 class="text-center mb-4">Plans Management</h1>
 
-    <div class="card" id="profileCard">
-        <div class="image-container" id="imageContainer">
-            <img src="https://material-cards.s3-eu-west-1.amazonaws.com/thumb-sean-penn.jpg" alt="Sean Penn" class="profile-img" id="profileImg">
-            <div class="menu-button" onclick="toggleCard()">
-                <div class="menu-icon"></div>
-            </div>
+        <!-- Display All Plans -->
+        <div class="mb-4">
+            <h2>All Plans</h2>
+            <button class="btn btn-primary" onclick="fetchAllPlans()">Load All Plans</button>
+            <div id="allPlans" class="mt-3"></div>
         </div>
-        <div class="card-info">
-            <div class="triangle"></div>
-            <div class="text-content">
-                <h2>Sean Penn</h2>
-                <p>⭐ Mystic River</p>
+
+        <!-- Get Plan by ID -->
+        <div class="mb-4">
+            <h2>Get Plan by ID</h2>
+            <div class="input-group mb-3">
+                <input type="text" id="planId" class="form-control" placeholder="Enter Plan ID">
+                <button class="btn btn-secondary" onclick="fetchPlanById()">Get Plan</button>
             </div>
-        </div>
-        <div class="card-details">
-            <p>He has won two Academy Awards for his roles in the mystery drama *Mystic River*.</p>
-            <h4>Social</h4>
-            <div style="display: flex; gap: 10px;">
-                <button class="btn btn-danger">f</button>
-                <button class="btn btn-danger">t</button>
-                <button class="btn btn-danger">in</button>
-                <button class="btn btn-danger">g+</button>
-            </div>
+            <div id="planDetails" class="mt-3"></div>
         </div>
     </div>
 
     <script>
-        function toggleCard() {
-            var card = document.getElementById("profileCard");
-            card.classList.toggle("expanded");
+        const baseUrl = "http://localhost:8003/api/plans";
+        const cc = localStorage.getItem("accessToken");
+        console.log("cxz", cc);
+        // Fetch all plans
+        async function fetchAllPlans() {
+            try {
+                const response = await fetch(`${baseUrl}/all`, {
+                    headers: {
+                        "Authorization": `Bearer ${localStorage.getItem("accessToken")}` // Include access token
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch plans.");
+                }
+
+                const plans = await response.json();
+                displayAllPlans(plans);
+            } catch (error) {
+                console.error("Error fetching plans:", error);
+                document.getElementById("allPlans").innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
+            }
+        }
+
+        // Display all plans
+        function displayAllPlans(plans) {
+            const plansContainer = document.getElementById("allPlans");
+            if (plans.length === 0) {
+                plansContainer.innerHTML = `<div class="alert alert-info">No plans found.</div>`;
+                return;
+            }
+
+            const plansHtml = plans.map(plan => `
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">${plan.name}</h5>
+                        <p class="card-text">${plan.description}</p>
+                        <p class="card-text"><strong>Price:</strong> $${plan.price}</p>
+                        <p class="card-text"><strong>Duration:</strong> ${plan.validityDays} days</p>
+                    </div>
+                </div>
+            `).join("");
+
+            plansContainer.innerHTML = plansHtml;
+        }
+
+        // Fetch plan by ID
+        async function fetchPlanById() {
+            const planId = document.getElementById("planId").value.trim();
+            if (!planId) {
+                alert("Please enter a Plan ID.");
+                return;
+            }
+
+            try {
+                const response = await fetch(`${baseUrl}/${planId}`, {
+                    headers: {
+                        "Authorization": `Bearer ${localStorage.getItem("accessToken")}` // Include access token
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error("Plan not found or failed to fetch.");
+                }
+
+                const plan = await response.json();
+                displayPlanDetails(plan);
+            } catch (error) {
+                console.error("Error fetching plan:", error);
+                document.getElementById("planDetails").innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
+            }
+        }
+
+        // Display plan details
+        function displayPlanDetails(plan) {
+            const planDetailsContainer = document.getElementById("planDetails");
+            const planHtml = `
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">${plan.name}</h5>
+                        <p class="card-text">${plan.description}</p>
+                        <p class="card-text"><strong>Price:</strong> $${plan.price}</p>
+                        <p class="card-text"><strong>Duration:</strong> ${plan.duration} days</p>
+                    </div>
+                </div>
+            `;
+
+            planDetailsContainer.innerHTML = planHtml;
         }
     </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Plans</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Manage Plans</h2>
+
+        <!-- Add / Edit Plan Form -->
+        <div class="card p-4 mb-4">
+            <h4 id="formTitle">Add New Plan</h4>
+            <form id="planForm">
+                <input type="hidden" id="planId">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Name:</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Price:</label>
+                        <input type="number" id="price" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <label>Validity (Days):</label>
+                        <input type="number" id="validityDays" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Data:</label>
+                        <input type="text" id="data" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <label>Calls:</label>
+                        <input type="text" id="calls" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label>SMS:</label>
+                        <input type="text" id="sms" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <label>Category:</label>
+                        <select id="category" class="form-control">
+                            <option value="DATA">DATA</option>
+                            <option value="UNLIMITED">UNLIMITED</option>
+                            <option value="PREMIUM">PREMIUM</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success mt-3">Save Plan</button>
+                <button type="button" class="btn btn-secondary mt-3" onclick="resetForm()">Cancel</button>
+            </form>
+        </div>
+
+        <!-- Plans Table -->
+        <table class="table table-bordered mt-4">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Validity (Days)</th>
+                    <th>Data</th>
+                    <th>Calls</th>
+                    <th>SMS</th>
+                    <th>Category</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="plansTable">
+                <!-- Plans will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        async function fetchPlans() {
+            try {
+                const response = await fetch("http://localhost:8003/api/plans/all");
+                if (!response.ok) throw new Error("Failed to fetch plans");
+                const plans = await response.json();
+
+                const tableBody = document.getElementById("plansTable");
+                tableBody.innerHTML = ""; // Clear table before adding data
+
+                plans.forEach(plan => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${plan.planId}</td>
+                        <td>${plan.name}</td>
+                        <td>₹${plan.price}</td>
+                        <td>${plan.validityDays}</td>
+                        <td>${plan.data}</td>
+                        <td>${plan.calls}</td>
+                        <td>${plan.sms}</td>
+                        <td>${plan.category}</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm" onclick="editPlan(${plan.planId})">Edit</button>
+                            <button class="btn btn-danger btn-sm" onclick="deletePlan(${plan.planId})">Delete</button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error("Error fetching plans:", error);
+                alert("Failed to load plans.");
+            }
+        }
+
+        async function deletePlan(planId) {
+            if (!confirm("Are you sure you want to delete this plan?")) return;
+
+            try {
+                const response = await fetch(`http://localhost:8003/api/plans/delete/${planId}`, {
+                    method: "DELETE"
+                });
+
+                if (!response.ok) throw new Error("Failed to delete plan");
+                alert("Plan deleted successfully!");
+                fetchPlans(); // Refresh the table
+            } catch (error) {
+                console.error("Error deleting plan:", error);
+                alert("Failed to delete plan.");
+            }
+        }
+
+        async function addOrUpdatePlan(event) {
+            event.preventDefault();
+
+            const planId = document.getElementById("planId").value;
+            const planData = {
+                name: document.getElementById("name").value,
+                price: parseFloat(document.getElementById("price").value),
+                validityDays: parseInt(document.getElementById("validityDays").value),
+                data: document.getElementById("data").value,
+                calls: document.getElementById("calls").value,
+                sms: document.getElementById("sms").value,
+                category: document.getElementById("category").value
+            };
+
+            const url = planId ? `http://localhost:8003/api/plans/update/${planId}` : "http://localhost:8003/api/plans/add";
+            const method = planId ? "PUT" : "POST";
+
+            try {
+                const response = await fetch(url, {
+                    method: method,
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(planData)
+                });
+
+                if (!response.ok) throw new Error("Failed to save plan");
+                alert(planId ? "Plan updated successfully!" : "Plan added successfully!");
+                resetForm();
+                fetchPlans(); // Refresh the table
+            } catch (error) {
+                console.error("Error saving plan:", error);
+                alert("Failed to save plan.");
+            }
+        }
+
+        async function editPlan(planId) {
+            try {
+                const response = await fetch(`http://localhost:8003/api/plans/${planId}`);
+                if (!response.ok) throw new Error("Failed to fetch plan details");
+                const plan = await response.json();
+
+                document.getElementById("planId").value = plan.planId;
+                document.getElementById("name").value = plan.name;
+                document.getElementById("price").value = plan.price;
+                document.getElementById("validityDays").value = plan.validityDays;
+                document.getElementById("data").value = plan.data;
+                document.getElementById("calls").value = plan.calls;
+                document.getElementById("sms").value = plan.sms;
+                document.getElementById("category").value = plan.category;
+
+                document.getElementById("formTitle").textContent = "Edit Plan";
+            } catch (error) {
+                console.error("Error fetching plan details:", error);
+                alert("Failed to load plan details.");
+            }
+        }
+
+        function resetForm() {
+            document.getElementById("planForm").reset();
+            document.getElementById("planId").value = "";
+            document.getElementById("formTitle").textContent = "Add New Plan";
+        }
+
+        document.getElementById("planForm").addEventListener("submit", addOrUpdatePlan);
+        window.onload = fetchPlans;
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

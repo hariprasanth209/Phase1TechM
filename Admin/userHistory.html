@@ -64,9 +64,10 @@
                             <label for="filterStatus">Filter by Status:</label>
                             <select id="filterStatus" class="form-select">
                                 <option value="all">All</option>
-                                <option value="success">Success</option>
-                                <option value="pending">Pending</option>
-                                <option value="failed">Failed</option>
+                                <option value="upi">UPI</option>
+                                <option value="credit">Credit</option>
+                                <option value="net banking">Net Banking</option>
+                                <option value="Wallet">Wallet</option>
                             </select>
                         </div>
                         <div class="col-md-4">
@@ -85,61 +86,22 @@
                                 <th>User</th>
                                 <th>Mobile Number</th>
                                 <th>Amount</th>
-                                <th>Status</th>
+                                <th>Payment Method</th>
                                 <th>Date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody id="userHistory">
                             <!-- Sample Data -->
-                            <tr>
+                            <!-- <tr>
                                 <td>Johnny depp</td>
                                 <td>9876543210</td>
                                 <td>₹123</td>
                                 <td><span class="badge bg-success">Success</span></td>
                                 <td>2023-10-01</td>
                                 <td><button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#detailsModal" onclick="showDetails(this)"><i class="fas fa-eye"></i> View</button></td>
-                            </tr>
-                            <tr>
-                                <td>Smith</td>
-                                <td>9123456789</td>
-                                <td>₹399</td>
-                                <td><span class="badge bg-warning">Pending</span></td>
-                                <td>2023-10-02</td>
-                                <td><button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#detailsModal" onclick="showDetails(this)"><i class="fas fa-eye"></i> View</button></td>
-                            </tr>
-                            <tr>
-                                <td>Giri</td>
-                                <td>9988776655</td>
-                                <td>₹256</td>
-                                <td><span class="badge bg-danger">Failed</span></td>
-                                <td>2023-10-03</td>
-                                <td><button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#detailsModal" onclick="showDetails(this)"><i class="fas fa-eye"></i> View</button></td>
-                            </tr>
-                            <tr>
-                                <td>John cena</td>
-                                <td>3210987654</td>
-                                <td>₹999</td>
-                                <td><span class="badge bg-success">Success</span></td>
-                                <td>2023-10-01</td>
-                                <td><button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#detailsModal" onclick="showDetails(this)"><i class="fas fa-eye"></i> View</button></td>
-                            </tr>
-                            <tr>
-                                <td>Sabari</td>
-                                <td>6789912345</td>
-                                <td>₹20</td>
-                                <td><span class="badge bg-warning">Pending</span></td>
-                                <td>2023-10-02</td>
-                                <td><button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#detailsModal" onclick="showDetails(this)"><i class="fas fa-eye"></i> View</button></td>
-                            </tr>
-                            <tr>
-                                <td>koushik</td>
-                                <td>7665599887</td>
-                                <td>₹15</td>
-                                <td><span class="badge bg-danger">Failed</span></td>
-                                <td>2023-10-03</td>
-                                <td><button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#detailsModal" onclick="showDetails(this)"><i class="fas fa-eye"></i> View</button></td>
-                            </tr>
+                            </tr> -->
+                            
                         </tbody>
                     </table>
                 </div>
@@ -210,6 +172,40 @@
             document.getElementById("modalStatus").textContent = status;
             document.getElementById("modalDate").textContent = date;
         }
+        (async function () {
+    try {
+        const response = await fetch(`http://localhost:8003/api/payment-history`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch payment history');
+        }
+
+        const data = await response.json();
+        displayResults(data);
+    } catch (error) {
+        console.error('Error:', error);
+        document.querySelector('.table-responsive tbody').innerHTML = `<tr><td colspan="6" style="color: red;">Error fetching payment history. Please try again.</td></tr>`;
+    }
+})();
+
+function displayResults(data) {
+    const tableBody = document.getElementById("userHistory");
+
+    data.forEach((history) => {
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+            <td>${history.user.name}</td>
+            <td>${history.user.phoneNumber}</td>
+            <td>${history.amount}</td>
+            <td>${history.payMethod}</td>
+            <td>${new Date(history.dateTime).toLocaleString()}</td>    
+            <td><button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#detailsModal" onclick="showDetails(this)"><i class="fas fa-eye"></i> View</button></td>
+            
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
     </script>
 </body>
 </html>
